@@ -1,0 +1,76 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    public Transform CameraTransform;
+    private CharacterController characterController;
+
+    public float MoveSpeed = 10f;
+    public float RotateSpeed = 5f;
+
+    private float xRotation;
+    private bool cursorLocked;
+
+    private InputAction moveAction;
+    private InputAction lookAction;
+
+    private void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+        moveAction = InputSystem.actions.FindAction("Move");
+        lookAction = InputSystem.actions.FindAction("Look");
+
+        LockCursor(true);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            LockCursor(false);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            LockCursor(true);
+        }
+
+        if (cursorLocked)
+        {
+            Move(moveAction.ReadValue<Vector2>());
+            Rotate(lookAction.ReadValue<Vector2>());
+        }
+    }
+
+    public void Move(Vector2 moveDir)
+    {
+        Vector3 move = (transform.forward * moveDir.y + transform.right * moveDir.x) * MoveSpeed * Time.deltaTime;
+        characterController.Move(move);
+    }
+
+    public void Rotate(Vector2 rotationDir)
+    {
+        rotationDir *= RotateSpeed;
+        xRotation -= rotationDir.y;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        CameraTransform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        transform.Rotate(Vector3.up * rotationDir.x);
+    }
+
+    public void LockCursor(bool state)
+    {
+        if (state)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        cursorLocked = state;
+    }
+}
