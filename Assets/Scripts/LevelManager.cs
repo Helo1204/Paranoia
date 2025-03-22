@@ -59,9 +59,11 @@ public class LevelManager : MonoBehaviour
     public void restart()
     {
         SceneManager.LoadScene("Main scene");
+        Time.timeScale = 1;
     }
     public void quit()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1;
     }
 }
