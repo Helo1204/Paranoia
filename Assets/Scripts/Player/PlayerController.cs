@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
     public Transform CameraTransform;
     private CharacterController characterController;
 
-    public float MoveSpeed = 10f;
+    private const float BaseMoveSpeed = 10f;
+    public float MoveSpeed ;
     public float RotateSpeed = 5f;
 
     private float xRotation;
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour
 
     public ParanoiaBar ParanoiaBar;
     public int DrugsAmmount;
+    private bool Eating = false;
+    private float latestEatingTime;
+    private float EATING_INTERVAL = 1f;
     public bool ControlsEnabled = true;
 
     private void Start()
@@ -25,6 +29,9 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         lookAction = InputSystem.actions.FindAction("Look");
         SetControlsEnabled(true);
+
+        MoveSpeed = BaseMoveSpeed;
+        Eating = false;
     }
 
     private void Update()
@@ -47,12 +54,26 @@ public class PlayerController : MonoBehaviour
         {
             Move(moveAction.ReadValue<Vector2>());
             Rotate(lookAction.ReadValue<Vector2>());
-
-            if (Input.GetKeyUp(KeyCode.E) && CheckDrug())
+            if (!Eating)
             {
-                ConsumeDrug();
+
+                if (Input.GetKeyUp(KeyCode.E) && CheckDrug())
+                {
+                    ConsumeDrug();
+                    Eating = true;
+                    MoveSpeed = 3f;
+                    latestEatingTime = Time.time;
+                }
             }
         }
+
+        if (Time.time > latestEatingTime + EATING_INTERVAL)
+        {
+            Eating = false;
+            MoveSpeed = BaseMoveSpeed;
+
+        }
+
     }
 
     public void Move(Vector2 moveDir)
