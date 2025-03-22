@@ -1156,6 +1156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4498804937278328970, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4953100679774755666, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: ParanoiaBar
       value: 
