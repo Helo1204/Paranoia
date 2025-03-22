@@ -445,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908556850138379791, guid: dc2b5e88a43558743b9711e43671c737, type: 3}
       propertyPath: current
-      value: 48.3
+      value: -7.6
       objectReference: {fileID: 0}
     - target: {fileID: 8058461684760369647, guid: dc2b5e88a43558743b9711e43671c737, type: 3}
       propertyPath: m_Name
@@ -1239,6 +1239,10 @@ PrefabInstance:
       propertyPath: ParanoiaBar
       value: 
       objectReference: {fileID: 1387834716}
+    - target: {fileID: 4953100679774755666, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 879202792}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1991,7 +1995,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0.000030517578}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 720, y: 298.2036}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1674525656
