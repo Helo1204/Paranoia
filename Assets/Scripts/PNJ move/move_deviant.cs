@@ -7,9 +7,10 @@ public class move_deviant : MonoBehaviour
     GameObject player;
     int longueurRue = 100;
     Vector3 destinationPosition;
-    float distanceDetection = 15f;
+    [SerializeField]   float distanceDetection = 10f;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] float speed;
+    [SerializeField] Animator animator;
     private float squareDistance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,8 +30,8 @@ public class move_deviant : MonoBehaviour
         if (dist < squareDistance)
         {
             agent.SetDestination(player.transform.position);
-            agent.speed = speed + 7;
-
+            agent.speed = speed + 4;
+            animator.SetTrigger("run");
         }
         else
         {
