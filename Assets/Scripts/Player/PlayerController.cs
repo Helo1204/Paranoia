@@ -23,6 +23,12 @@ public class PlayerController : MonoBehaviour
     private float EATING_INTERVAL = 1f;
     public bool ControlsEnabled = true;
 
+    public AudioSource Src;
+    public AudioClip SfxBouffe;
+
+    
+
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -62,7 +68,9 @@ public class PlayerController : MonoBehaviour
                     ConsumeDrug();
                     Eating = true;
                     MoveSpeed = 3f;
+
                     latestEatingTime = Time.time;
+                    Bouffing();
                 }
             }
         }
@@ -120,7 +128,13 @@ public class PlayerController : MonoBehaviour
         DrugsAmmount += -1;
     }
 
+    public void Bouffing()
+    {
+        Src.clip = SfxBouffe;
+        Src.Play();
+    }
+
     bool CheckDrug()
-    { return DrugsAmmount > 1; }
+    { return DrugsAmmount >= 1; }
 
 }

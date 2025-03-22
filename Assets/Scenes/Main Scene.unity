@@ -146,7 +146,7 @@ RectTransform:
   m_GameObject: {fileID: 28192354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 3, z: 2}
+  m_LocalScale: {x: 4, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1995660998}
@@ -222,7 +222,7 @@ RectTransform:
   m_GameObject: {fileID: 28780967}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 3, z: 2}
+  m_LocalScale: {x: 4, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1834895296}
@@ -916,7 +916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3964353955856460498, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -470
+      value: 30.4
       objectReference: {fileID: 0}
     - target: {fileID: 3964353955856460498, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_fontSizeMax: 0
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1875,7 +1875,7 @@ MonoBehaviour:
   m_fontSizeMax: 0
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

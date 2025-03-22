@@ -6,9 +6,10 @@ public class move_deviant : MonoBehaviour
     GameObject player;
 
     Vector3 destinationPosition;
-    float distanceDetection = 15f;
+    [SerializeField] float distanceDetection = 10f;
     private NavMeshAgent agent;
     [SerializeField] float speed;
+    [SerializeField] Animator animator;
     private float squareDistance;
 
     private void Start()
@@ -30,7 +31,8 @@ public class move_deviant : MonoBehaviour
         if (dist < squareDistance)
         {
             agent.SetDestination(player.transform.position);
-            agent.speed = speed + 7;
+            agent.speed = speed + 4;
+            animator.SetTrigger("run");
         }
         else
         {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Person : MonoBehaviour
@@ -11,6 +12,7 @@ public class Person : MonoBehaviour
     public GameObject HoldingObject;
     public int DangerMaterialIndex;
     public bool IsMurder;
+    [SerializeField] Animator animator;
 
     public void Start()
     {
@@ -33,7 +35,8 @@ public class Person : MonoBehaviour
         Debug.Log(foundTarget);
         if (foundTarget)
         {
-            StabPlayer();
+            animator.SetTrigger("stab");
+           StartCoroutine( StabPlayer());
         }
     }
 
@@ -43,8 +46,9 @@ public class Person : MonoBehaviour
         renderer.SetPropertyBlock(materialPropertyBlock, DangerMaterialIndex);
     }
 
-    private void StabPlayer()
+    private  IEnumerator StabPlayer()
     {
+        yield return new WaitForSeconds(2);
         LevelManager.Main.GameOver();
     }
 }
