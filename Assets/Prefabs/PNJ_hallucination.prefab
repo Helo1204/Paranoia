@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5633442460690368104}
   - component: {fileID: 8454502351406490161}
   - component: {fileID: 7420644516285395378}
+  - component: {fileID: 3022259225034630809}
   m_Layer: 0
   m_Name: PNJ_hallucination
   m_TagString: Untagged
@@ -68,6 +69,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 1424b53cea80af640ba14bbda112a2cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1fb195c2a92894aa5952bdcdf03483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   agent: {fileID: 7420644516285395378}
 --- !u!195 &7420644516285395378
 NavMeshAgent:
@@ -135,7 +138,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -147,3 +150,17 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3022259225034630809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129923821761929809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa11deae39f7194bafce16fbc83e668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoldingObject: {fileID: 0}
+  DangerMaterialIndex: 1
