@@ -22,10 +22,10 @@ public class ParanoiaBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetCurrentFill();
+        UpdateCurrentFill();
     }
 
-    void GetCurrentFill()
+    void UpdateCurrentFill()
     {
         float currentOffset = current - minimum;
         float maximumOffset = maximum - minimum;
@@ -35,14 +35,22 @@ public class ParanoiaBar : MonoBehaviour
 
         //fill.color = color;
     }
+    public float GetCurrentFill()
+    {
+        return current;
+    }
 
     public void ResetParanoia()
     {
         current = 0f;
+        
     }
 
     public void AddParanoia(float amount)
     {
         current += amount;
     }
+
+    
+
 }

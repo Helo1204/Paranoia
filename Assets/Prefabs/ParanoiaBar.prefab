@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 7412993194693587098}
   - component: {fileID: 3140099222191716797}
   - component: {fileID: 7908556850138379791}
+  - component: {fileID: 7926830351691056603}
   m_Layer: 5
   m_Name: ParanoiaBar
   m_TagString: Untagged
@@ -168,6 +169,20 @@ MonoBehaviour:
   minimum: 0
   current: 50
   mask: {fileID: 5788251203165309018}
+--- !u!114 &7926830351691056603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058461684760369647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a617f9beac5a9d64ca35d0edcab23205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParanoiaBar: {fileID: 0}
+  ParanoiaAmount: 0
 --- !u!1 &9196499821424092100
 GameObject:
   m_ObjectHideFlags: 0
