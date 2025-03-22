@@ -17,18 +17,23 @@ public class PlayerController : MonoBehaviour
 
     public ParanoiaBar ParanoiaBar;
     public int DrugsAmmount;
+    public bool ControlsEnabled = true;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         lookAction = InputSystem.actions.FindAction("Look");
-
-        LockCursor(true);
+        SetControlsEnabled(true);
     }
 
     private void Update()
     {
+        if (!ControlsEnabled)
+        {
+            return;
+        }
+
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             LockCursor(false);
@@ -80,6 +85,12 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
         cursorLocked = state;
+    }
+
+    public void SetControlsEnabled(bool enabled)
+    {
+        ControlsEnabled = enabled;
+        LockCursor(enabled);
     }
 
     void ConsumeDrug()

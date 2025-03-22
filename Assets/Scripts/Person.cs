@@ -24,12 +24,13 @@ public class Person : MonoBehaviour
     {
         UpdateDangerValue(dangerSystem.CalculateDanger(transform.position));
 
-        if (IsMurder)
+        if (!IsMurder)
         {
             return;
         }
 
-        bool foundTarget = Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Playere"));
+        bool foundTarget = Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Player"));
+        Debug.Log(foundTarget);
         if (foundTarget)
         {
             StabPlayer();
@@ -44,6 +45,6 @@ public class Person : MonoBehaviour
 
     private void StabPlayer()
     {
-        // TODO: trigger death animation
+        LevelManager.Main.GameOver();
     }
 }
