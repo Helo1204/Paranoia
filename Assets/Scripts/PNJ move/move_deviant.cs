@@ -24,7 +24,12 @@ public class move_deviant : MonoBehaviour
     void Update()
 
     {
-        if (Vector3.SqrMagnitude(player.transform.position- transform.position) < squareDistance)
+        float dist = Vector3.SqrMagnitude(player.transform.position - transform.position);
+        if (dist<0.6f)
+        {
+            //player.Dead();
+        }
+        if (dist < squareDistance)
         {
             agent.SetDestination(player.transform.position);
             agent.speed = speed + 7;
