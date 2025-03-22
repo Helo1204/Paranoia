@@ -13,15 +13,24 @@ public class move_hallu : MonoBehaviour
     {
         destinationPosition = transform.position +new Vector3(1,0,0)*longueurRue;
         agent.speed = speed;
+        agent.SetDestination(destinationPosition);
     }
 
     // Update is called once per frame
     void Update()
     {
         agent.SetDestination(destinationPosition);
-        if (transform.position.x>longueurRue)
+        if (!agent.hasPath)
         {
-            Destroy(this.gameObject);
+            destinationPosition = transform.position + new Vector3(1, 0, 0) * longueurRue;
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
         }
     }
 
