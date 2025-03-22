@@ -5,8 +5,8 @@ using System.Collections;
 public class LevelManager : MonoBehaviour
 {
     public ParanoiaBar ParanoiaBar;
-    public float CrowdFactor = 1f;
-    public float BaseFactor = 1f;
+    public float CrowdFactor = 0.5f;
+    public float BaseFactor = 0.5f;
     public float Factor = 1f;
     public float Difficulty = 1;
     public float radius=10;
@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
     public int CountEnnemy(Vector3 center, float radius)
     {
-        return  Physics.OverlapSphere(center, radius, LayerMask.NameToLayer("Ennemy") ).Length;
+        return  Physics.OverlapSphere(center, radius, 1<<LayerMask.NameToLayer("Ennemy")).Length;
     }
 
     public void UpdateFactor(int numberEnnemy)

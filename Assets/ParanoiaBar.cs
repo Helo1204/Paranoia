@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [ExecuteInEditMode()]
 public class ParanoiaBar : MonoBehaviour
@@ -30,6 +31,7 @@ public class ParanoiaBar : MonoBehaviour
         float currentOffset = current - minimum;
         float maximumOffset = maximum - minimum;
         float fillAmount = currentOffset / maximumOffset;
+        
         //float fillAmount = (float)current / (float)maximum;
         mask.fillAmount = fillAmount;
 
@@ -48,7 +50,7 @@ public class ParanoiaBar : MonoBehaviour
 
     public void AddParanoia(float amount)
     {
-        current += amount;
+        current = Mathf.Clamp(current + amount, minimum, maximum); //floor et ceilamount;
     }
 
     
