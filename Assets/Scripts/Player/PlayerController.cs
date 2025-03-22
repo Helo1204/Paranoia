@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private InputAction lookAction;
 
+    public ParanoiaBar ParanoiaBar;
+    public int DrugsAmmount;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -39,6 +42,11 @@ public class PlayerController : MonoBehaviour
         {
             Move(moveAction.ReadValue<Vector2>());
             Rotate(lookAction.ReadValue<Vector2>());
+
+            if (Input.GetKeyUp(KeyCode.E) && CheckDrug())
+            {
+                ConsumeDrug();
+            }
         }
     }
 
@@ -73,4 +81,14 @@ public class PlayerController : MonoBehaviour
         }
         cursorLocked = state;
     }
+
+    void ConsumeDrug()
+    {
+        ParanoiaBar.AddParanoia(-20);
+        DrugsAmmount += -1;
+    }
+
+    bool CheckDrug()
+    { return DrugsAmmount > 1; }
+
 }
