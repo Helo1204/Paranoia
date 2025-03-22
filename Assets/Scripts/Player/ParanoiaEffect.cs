@@ -27,7 +27,6 @@ public class ParanoiaEffect : MonoBehaviour
         ParanoiaAmount = ParanoiaBar.GetCurrentFill();
         
         PlayerCamera.fieldOfView = FOVfunction(ParanoiaAmount);
-        Debug.Log(PlayerCamera.fieldOfView);
     }
 
     void ResetFOV()
