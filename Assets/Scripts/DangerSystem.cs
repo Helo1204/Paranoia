@@ -41,6 +41,6 @@ public class DangerSystem : MonoBehaviour
             return 0;
         }
 
-        return (sqrDistance - SqrMaxDangerDistance) / (SqrMinDangerDistance - SqrMaxDangerDistance);
+        return 1 + (sqrDistance - SqrMaxDangerDistance) / (SqrMaxDangerDistance - SqrMinDangerDistance);
     }
 }
