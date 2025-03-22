@@ -46,15 +46,19 @@ public class StabSystem : MonoBehaviour
             animator.SetTrigger("Stab");
             if (foundTarget)
             {
-                StabTarget(hit.transform);
+                StabTarget(hit.transform, hit.point, hit.normal);
             }
         }
     }
 
-    public void StabTarget(Transform transform)
+    public void StabTarget(Transform transform, Vector3 point, Vector3 normal)
     {
         NavMeshAgent agent = transform.GetComponent<NavMeshAgent>();
         agent.isStopped = true;
-        transform.GetComponent<ParticleSystem>().Play();
+        ParticleSystem particleSystem = transform.GetComponent<ParticleSystem>();
+        particleSystem.Play();
+
+        ParticleSystem.ShapeModule shapeModule = particleSystem.shape;
+        shapeModule.position = transform.InverseTransformPoint(point);
     }
 }
