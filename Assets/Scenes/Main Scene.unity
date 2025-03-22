@@ -831,9 +831,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SafePrefabs:
-  - {fileID: 129923821761929809, guid: 926a1836e1cd82d41a59be0f41fe152d, type: 3}
+  - {fileID: 7331974188798099969, guid: c2bedd9300bef67458df37c94fcebcca, type: 3}
   EnemyPrefabs:
-  - {fileID: 4501111675812849203, guid: d6774f3cbb3e9fa4cbf617f94245e7d0, type: 3}
+  - {fileID: 7331974188798099969, guid: 68e000b60469fac4f958d8f8a5124705, type: 3}
   Affluence:
     serializedVersion: 2
     m_Curve:
@@ -894,29 +894,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1963239431972871927, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624739964970155815, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3491864309646170668, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 3883916820394331592, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: ParanoiaBar
       value: 
       objectReference: {fileID: 1387834716}
-    - target: {fileID: 3953316216664579852, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 3964353955856460498, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.4
+      value: -480
       objectReference: {fileID: 0}
     - target: {fileID: 3964353955856460498, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: m_LocalPosition.y
@@ -958,46 +942,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4498804937278328970, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4953100679774755666, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: ParanoiaBar
       value: 
       objectReference: {fileID: 1387834716}
-    - target: {fileID: 4953100679774755666, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: PlayerCamera
-      value: 
-      objectReference: {fileID: 879202792}
-    - target: {fileID: 5262522941169336137, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385836117532765051, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 7601567294579604341, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: CursorImage
       value: 
       objectReference: {fileID: 1730040081}
-    - target: {fileID: 7659810650630048252, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8412336128161136994, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479265067714003324, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8608698108290781139, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

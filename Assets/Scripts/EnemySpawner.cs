@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         playerTransform = DangerSystem.Main.transform;
-        timeSinceBeginning = Time.time;
+        timeSinceBeginning = 0;
         furthestEnemySpawnX = FurthestEnemySpawnTransform.position.x;
     }
 
