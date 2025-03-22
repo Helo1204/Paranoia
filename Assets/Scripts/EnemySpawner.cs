@@ -5,9 +5,9 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject hallucination;
     [SerializeField] GameObject deviant;
-    float roadRadius;
-    float hallucinationRatio; //entre 0 et 1
-    float affluence;
+    float roadRadius = 5;
+    float hallucinationRatio = 0.7f; //entre 0 et 1
+    float affluence = 3;
     float time;
 
     Action currentState;
