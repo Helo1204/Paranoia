@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8454502351406490161}
   - component: {fileID: 7420644516285395378}
   - component: {fileID: 3022259225034630809}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PNJ_hallucination
   m_TagString: Untagged
   m_Icon: {fileID: 0}

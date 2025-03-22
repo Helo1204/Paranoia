@@ -26,11 +26,12 @@ public class LevelManager : MonoBehaviour
 
     public int CountEnnemy(Vector3 center, float radius)
     {
-        return  Physics.OverlapSphere(center, radius, 6).Length;
+        return  Physics.OverlapSphere(center, radius, LayerMask.NameToLayer("Ennemy") ).Length;
     }
 
-    public void UpdateFactor(int NumberEnnemy)
+    public void UpdateFactor(int numberEnnemy)
     {
-        Factor = CrowdFactor*NumberEnnemy + BaseFactor;
+        Factor = CrowdFactor*numberEnnemy + BaseFactor;
+        //Debug.Log(numberEnnemy);
     }
 }
