@@ -10,16 +10,10 @@ public class EnemySpawner : MonoBehaviour
     float affluence = 3;
     float time;
 
-    Action currentState;
-    void Start()
-    {
-        currentState = Reload;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        currentState?.Invoke();
+        Reload();
     }
     
     void Spawn()
@@ -36,7 +30,6 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(deviant, lRandomPosition, Quaternion.identity);
         }
         time = 0;
-        currentState = Reload;
     }
 
     void Reload()
@@ -44,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
         time += Time.deltaTime;
         if (time > affluence)
         {
-            currentState = Spawn;
+            Spawn();
         }
     }
 }
