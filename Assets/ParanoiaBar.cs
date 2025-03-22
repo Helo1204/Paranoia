@@ -8,7 +8,7 @@ public class ParanoiaBar : MonoBehaviour
 {
     public int maximum;
     public int minimum;
-    public int current;
+    public float current;
     public Image mask;
     //public Image fill;
     //public Color color;
@@ -16,7 +16,7 @@ public class ParanoiaBar : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -34,5 +34,15 @@ public class ParanoiaBar : MonoBehaviour
         mask.fillAmount = fillAmount;
 
         //fill.color = color;
+    }
+
+    public void ResetParanoia()
+    {
+        current = 0f;
+    }
+
+    public void AddParanoia(float amount)
+    {
+        current += amount;
     }
 }
