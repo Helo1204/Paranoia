@@ -944,6 +944,7 @@ MonoBehaviour:
   Factor: 1
   Difficulty: 1
   radius: 10
+  gameOver: {fileID: 1674525654}
 --- !u!4 &416155945
 Transform:
   m_ObjectHideFlags: 0
