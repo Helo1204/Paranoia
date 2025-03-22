@@ -38,19 +38,21 @@ public class StabSystem : MonoBehaviour
     public void Update()
     {
         bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Ennemy"));
-
         CursorImage.color = foundTarget ? Color.red : Color.white;
 
-        if (Input.GetMouseButtonDown(0) && foundTarget && Time.time > latestStabTime + STAB_INTERVAL)
+        if (Input.GetMouseButtonDown(0) && Time.time > latestStabTime + STAB_INTERVAL)
         {
             latestStabTime = Time.time;
-            StabTarget(hit.transform);
+            animator.SetTrigger("Stab");
+            if (foundTarget)
+            {
+                StabTarget(hit.transform);
+            }
         }
     }
 
     public void StabTarget(Transform transform)
     {
-        animator.SetTrigger("Stab");
         NavMeshAgent agent = transform.GetComponent<NavMeshAgent>();
         agent.isStopped = true;
         transform.GetComponent<ParticleSystem>().Play();

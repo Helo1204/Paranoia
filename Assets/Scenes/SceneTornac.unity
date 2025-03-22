@@ -412,27 +412,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361524079}
   m_CullTransparentMesh: 1
---- !u!1 &456114176 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4498804937278328970, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-  m_PrefabInstance: {fileID: 8349547763430550251}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &456114186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456114176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba745944331309b4084bfba67610ae4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StabDistance: 5
-  CameraTransform: {fileID: 1786540134}
-  animator: {fileID: 1045705227}
-  CursorImage: {fileID: 361524081}
 --- !u!1 &471944936
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,11 +886,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1045705227 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1177370106874338344, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-  m_PrefabInstance: {fileID: 8349547763430550251}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1381087540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1165,16 +1139,6 @@ Transform:
   - {fileID: 471944940}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!4 &1786540134 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4765891515129524027, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-  m_PrefabInstance: {fileID: 8349547763430550251}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &1786540137 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3853646306600553090, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-  m_PrefabInstance: {fileID: 8349547763430550251}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2007209405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,10 +1302,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1177370106874338344, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: m_AnimatePhysics
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3964353955856460498, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -1390,17 +1350,14 @@ PrefabInstance:
       propertyPath: ParanoiaBar
       value: 
       objectReference: {fileID: 1381087542}
-    - target: {fileID: 4953100679774755666, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      propertyPath: PlayerCamera
+    - target: {fileID: 7601567294579604341, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: CursorImage
       value: 
-      objectReference: {fileID: 1786540137}
+      objectReference: {fileID: 361524081}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4498804937278328970, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 456114186}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
