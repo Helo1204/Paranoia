@@ -60,7 +60,9 @@ public class StabSystem : MonoBehaviour
 
         ParticleSystem.ShapeModule shapeModule = particleSystem.shape;
         shapeModule.position = transform.InverseTransformPoint(point);
-        Quaternion rotation = transform.rotation * Quaternion.LookRotation(normal);
+        
+        Vector3 localNormal = transform.InverseTransformDirection(normal);
+        Quaternion rotation = Quaternion.LookRotation(localNormal);// * transform.rotation;
         shapeModule.rotation = rotation.eulerAngles;
     }
 }

@@ -1,22 +1,24 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class move_hallu : MonoBehaviour
 {
     [SerializeField] float speed;
-    int longueurRue = 100;
+    
     Vector3 destinationPosition;
-    [SerializeField] NavMeshAgent agent;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private NavMeshAgent agent;
+    
     void Start()
     {
-        destinationPosition = transform.position +new Vector3(1,0,0)*longueurRue;
+        agent = GetComponent<NavMeshAgent>();
+
+        destinationPosition = EnemySpawner.Main.PlayerSpawnTransform.position;
+        destinationPosition.z = transform.position.z;
+
         agent.speed = speed;
         agent.SetDestination(destinationPosition);
     }
 
-    // Update is called once per frame
     void Update()
     {
         agent.SetDestination(destinationPosition);
