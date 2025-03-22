@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 
 public class LevelManager : MonoBehaviour
@@ -10,11 +11,13 @@ public class LevelManager : MonoBehaviour
     public float Factor = 1f;
     public float Difficulty = 1;
     public float radius=10;
+    [SerializeField] GameObject gameOver;
     GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = DangerSystem.Main.gameObject;
+        gameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,5 +36,17 @@ public class LevelManager : MonoBehaviour
     {
         Factor = CrowdFactor*numberEnnemy + BaseFactor;
         //Debug.Log(numberEnnemy);
+    }
+    public void GameOver()
+    {
+        gameOver.SetActive(true);
+    }
+    public void restart()
+    {
+        SceneManager.LoadScene("Main scene");
+    }
+    public void quit()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
