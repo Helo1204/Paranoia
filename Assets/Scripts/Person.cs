@@ -10,7 +10,7 @@ public class Person : MonoBehaviour
     public GameObject HoldingObject;
     public int DangerMaterialIndex;
 
-    public void Awake()
+    public void Start()
     {
         dangerSystem = DangerSystem.Main;
         renderer = GetComponent<Renderer>();
