@@ -15,6 +15,8 @@ public class ParanoiaEffect : MonoBehaviour
     float Max_Fog = 0.07f;
     float Min_Fog = 0.015f;
 
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,8 +63,8 @@ public class ParanoiaEffect : MonoBehaviour
     void SetFog(float fogAmount)
     {
         RenderSettings.fogDensity = fogAmount;
-        
     }
+
 
 
 

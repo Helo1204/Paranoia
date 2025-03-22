@@ -7,6 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 [ExecuteInEditMode()]
 public class ParanoiaBar : MonoBehaviour
 {
+    public int AccMax = 4;
     public int maximum;
     public int minimum;
     public float current;
@@ -45,11 +46,12 @@ public class ParanoiaBar : MonoBehaviour
     public void ResetParanoia()
     {
         current = 0f;
-        
+
     }
 
     public void AddParanoia(float amount)
     {
+        amount = Mathf.Min(amount, AccMax);
         current = Mathf.Clamp(current + amount, minimum, maximum); //floor et ceilamount;
     }
 
