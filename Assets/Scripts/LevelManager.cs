@@ -13,7 +13,20 @@ public class LevelManager : MonoBehaviour
     public float radius=10;
     [SerializeField] GameObject gameOver;
     GameObject player;
+
+    public static LevelManager Main;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public void Awake()
+    {
+        if (Main)
+        {
+            Debug.LogError($"StabSystem.Main already exists, deleting the current one on {name}");
+            Destroy(this);
+            return;
+        }
+
+        Main = this;
+    }
     void Start()
     {
         player = DangerSystem.Main.gameObject;
@@ -40,13 +53,17 @@ public class LevelManager : MonoBehaviour
     public void GameOver()
     {
         gameOver.SetActive(true);
+        player.GetComponent<PlayerController>().SetControlsEnabled(false);
+        Time.timeScale = 0;
     }
     public void restart()
     {
         SceneManager.LoadScene("Main scene");
+        Time.timeScale = 1;
     }
     public void quit()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1;
     }
 }

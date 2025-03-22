@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6343556439227792751}
   - component: {fileID: 6117664567756017106}
   - component: {fileID: 4953100679774755666}
+  - component: {fileID: 7601567294579604341}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -182,7 +183,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParanoiaBar: {fileID: 0}
-  ParanoiaAmount: 0
+  PlayerCamera: {fileID: 3853646306600553090}
+  MaxFOV: 100
+  MinFOV: 60
+--- !u!114 &7601567294579604341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4498804937278328970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba745944331309b4084bfba67610ae4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StabDistance: 5
+  CameraTransform: {fileID: 4765891515129524027}
+  animator: {fileID: 1177370106874338344}
+  CursorImage: {fileID: 0}
 --- !u!1 &5385836117532765051
 GameObject:
   m_ObjectHideFlags: 0

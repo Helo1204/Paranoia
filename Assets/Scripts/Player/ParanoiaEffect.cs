@@ -15,6 +15,8 @@ public class ParanoiaEffect : MonoBehaviour
     float Max_Fog = 0.07f;
     float Min_Fog = 0.015f;
 
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,12 +30,10 @@ public class ParanoiaEffect : MonoBehaviour
     void Update()
     {
         ParanoiaAmount = ParanoiaBar.GetCurrentFill();
-        
-        PlayerCamera.fieldOfView = FOVfunction(ParanoiaAmount);
-        //Debug.Log(PlayerCamera.fieldOfView);
 
-        SetFog(FogFunction(ParanoiaAmount));
-        Debug.Log(RenderSettings.fogDensity);
+        PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, FOVfunction(ParanoiaAmount), Time.deltaTime);
+        //PlayerCamera.fieldOfView = FOVfunction(ParanoiaAmount);
+        SetFog(Mathf.Lerp(RenderSettings.fogDensity, FogFunction(ParanoiaAmount), Time.deltaTime));
     }
 
     void ResetFOV()
@@ -64,8 +64,8 @@ public class ParanoiaEffect : MonoBehaviour
     void SetFog(float fogAmount)
     {
         RenderSettings.fogDensity = fogAmount;
-        
     }
+
 
 
 

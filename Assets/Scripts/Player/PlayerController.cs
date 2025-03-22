@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
     public Transform CameraTransform;
     private CharacterController characterController;
 
-    public float MoveSpeed = 10f;
+    private const float BaseMoveSpeed = 10f;
+    public float MoveSpeed ;
     public float RotateSpeed = 5f;
 
     private float xRotation;
@@ -15,17 +16,31 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private InputAction lookAction;
 
+    public ParanoiaBar ParanoiaBar;
+    public int DrugsAmmount;
+    private bool Eating = false;
+    private float latestEatingTime;
+    private float EATING_INTERVAL = 1f;
+    public bool ControlsEnabled = true;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         lookAction = InputSystem.actions.FindAction("Look");
+        SetControlsEnabled(true);
 
-        LockCursor(true);
+        MoveSpeed = BaseMoveSpeed;
+        Eating = false;
     }
 
     private void Update()
     {
+        if (!ControlsEnabled)
+        {
+            return;
+        }
+
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             LockCursor(false);
@@ -39,7 +54,26 @@ public class PlayerController : MonoBehaviour
         {
             Move(moveAction.ReadValue<Vector2>());
             Rotate(lookAction.ReadValue<Vector2>());
+            if (!Eating)
+            {
+
+                if (Input.GetKeyUp(KeyCode.E) && CheckDrug())
+                {
+                    ConsumeDrug();
+                    Eating = true;
+                    MoveSpeed = 3f;
+                    latestEatingTime = Time.time;
+                }
+            }
         }
+
+        if (Time.time > latestEatingTime + EATING_INTERVAL)
+        {
+            Eating = false;
+            MoveSpeed = BaseMoveSpeed;
+
+        }
+
     }
 
     public void Move(Vector2 moveDir)
@@ -73,4 +107,20 @@ public class PlayerController : MonoBehaviour
         }
         cursorLocked = state;
     }
+
+    public void SetControlsEnabled(bool enabled)
+    {
+        ControlsEnabled = enabled;
+        LockCursor(enabled);
+    }
+
+    void ConsumeDrug()
+    {
+        ParanoiaBar.AddParanoia(-20);
+        DrugsAmmount += -1;
+    }
+
+    bool CheckDrug()
+    { return DrugsAmmount > 1; }
+
 }

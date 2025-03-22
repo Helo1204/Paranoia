@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class move_deviant : MonoBehaviour
 {
     GameObject player;
-    int longueurRue = 50;
+    int longueurRue = 100;
     Vector3 destinationPosition;
     float distanceDetection = 15f;
     [SerializeField] NavMeshAgent agent;
@@ -18,6 +18,7 @@ public class move_deviant : MonoBehaviour
         player = DangerSystem.Main.gameObject;
         agent.speed = speed;
         squareDistance = Mathf.Pow(distanceDetection, 2);
+        agent.SetDestination(destinationPosition);
     }
 
     // Update is called once per frame
@@ -25,10 +26,6 @@ public class move_deviant : MonoBehaviour
 
     {
         float dist = Vector3.SqrMagnitude(player.transform.position - transform.position);
-        if (dist<0.6f)
-        {
-            //player.Dead();
-        }
         if (dist < squareDistance)
         {
             agent.SetDestination(player.transform.position);
@@ -39,13 +36,14 @@ public class move_deviant : MonoBehaviour
         {
             agent.SetDestination(destinationPosition);
         }
-
-
-
-        if (transform.position.x > longueurRue)
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            Destroy(this.gameObject);
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                Destroy(this.gameObject);
+            }
         }
+
 
     }
 
