@@ -18,6 +18,7 @@ public class move_deviant : MonoBehaviour
         player = DangerSystem.Main.gameObject;
         agent.speed = speed;
         squareDistance = Mathf.Pow(distanceDetection, 2);
+        agent.SetDestination(destinationPosition);
     }
 
     // Update is called once per frame
@@ -42,9 +43,17 @@ public class move_deviant : MonoBehaviour
 
 
 
-        if (transform.position.x > longueurRue)
+        if (!agent.hasPath)
         {
-            Destroy(this.gameObject);
+            destinationPosition = transform.position + new Vector3(1, 0, 0) * longueurRue;
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
         }
 
     }
