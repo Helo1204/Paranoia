@@ -5,13 +5,13 @@ using UnityEngine.AI;
 public class move_hallu : MonoBehaviour
 {
     [SerializeField] float speed;
-    int longeurRue = 50;
+    int longueurRue = 50;
     Vector3 destinationPosition;
     [SerializeField] NavMeshAgent agent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        destinationPosition = transform.position +new Vector3(1,0,0)*longeurRue;
+        destinationPosition = transform.position +new Vector3(1,0,0)*longueurRue;
         agent.speed = speed;
     }
 
@@ -19,7 +19,7 @@ public class move_hallu : MonoBehaviour
     void Update()
     {
         agent.SetDestination(destinationPosition);
-        if(Vector3.Distance(destinationPosition,transform.position)<0.5f)
+        if (transform.position.x>longueurRue)
         {
             Destroy(this.gameObject);
         }
