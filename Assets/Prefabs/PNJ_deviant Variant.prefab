@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PNJ_deviant Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7455316933889180203, guid: 926a1836e1cd82d41a59be0f41fe152d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455316933889180203, guid: 926a1836e1cd82d41a59be0f41fe152d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1424b53cea80af640ba14bbda112a2cd, type: 2}
     - target: {fileID: 8839218798043598860, guid: 926a1836e1cd82d41a59be0f41fe152d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
