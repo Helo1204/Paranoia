@@ -47,25 +47,50 @@ public class EnemySpawner : MonoBehaviour
         timeSinceLastSpawn += Time.deltaTime;
         timeSinceBeginning += Time.deltaTime;
 
-        if (timeSinceLastSpawn > Affluence.Evaluate(timeSinceBeginning))
+        if (timeSinceLastSpawn > CalculateAffluence(timeSinceBeginning))
         {
             Spawn();
         }
     }
+
+    public float CalculateAffluence(float time)
+    {
+        time %= 20f; // creneau period
+        if (time < 15f) // time for high creneau
+        {
+            return 0.7f;
+        }
+        return 1.3f; // time for low creneau
+    }
     
     public void Spawn()
     {
-        float zPos = Random.Range(-0.8f, 0.8f) * roadRadius;
-        Vector3 randomSpawnPos = new(GetSpawnX(), FurthestEnemySpawnTransform.position.y, zPos);
-        Quaternion spawnRotation = Quaternion.identity;
+        int spawnCount = Random.Range(1, 4);
 
-        if (Random.Range(0f, 1f) < EnemyRatio.Evaluate(timeSinceBeginning))
+        float zPos = float.MaxValue;
+        for (int i = 0; i < spawnCount; i++)
         {
-            Instantiate(GetRandomPrefab(EnemyPrefabs), randomSpawnPos, spawnRotation);
-        }
-        else
-        {
-            Instantiate(GetRandomPrefab(SafePrefabs), randomSpawnPos, spawnRotation);
+            if (zPos != float.MaxValue)
+            {
+                // Spawning next to same generation member
+                zPos += 0.2f;
+            }
+            else
+            {
+                zPos = Random.Range(-0.8f, 1f - 0.2f * spawnCount) * roadRadius;
+            }
+
+            Vector3 randomSpawnPos = new(GetSpawnX(), FurthestEnemySpawnTransform.position.y, zPos);
+            Quaternion spawnRotation = Quaternion.identity;
+
+            if (Random.Range(0f, 1f) < EnemyRatio.Evaluate(timeSinceBeginning))
+            {
+                Instantiate(GetRandomPrefab(EnemyPrefabs), randomSpawnPos, spawnRotation);
+            }
+            else
+            {
+                Instantiate(GetRandomPrefab(SafePrefabs), randomSpawnPos, spawnRotation);
+            }
         }
 
         timeSinceLastSpawn = 0;
