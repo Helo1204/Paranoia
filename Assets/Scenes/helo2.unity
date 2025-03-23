@@ -887,6 +887,10 @@ PrefabInstance:
       propertyPath: CursorImage
       value: 
       objectReference: {fileID: 1730040081}
+    - target: {fileID: 8044181179275135214, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -954,8 +958,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 856f92f9db0f26749a92a0115bdde299, type: 2}
-  m_sharedMaterial: {fileID: 3459546014447022821, guid: 856f92f9db0f26749a92a0115bdde299, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1787,8 +1791,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 856f92f9db0f26749a92a0115bdde299, type: 2}
-  m_sharedMaterial: {fileID: 3459546014447022821, guid: 856f92f9db0f26749a92a0115bdde299, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

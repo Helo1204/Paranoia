@@ -259,14 +259,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraTransform: {fileID: 4765891515129524027}
-  MoveSpeed: 5
+  MoveSpeed: 10
   RotateSpeed: 0.25
   ParanoiaBar: {fileID: 0}
   DrugsAmmount: 0
   ControlsEnabled: 1
   Src: {fileID: 8044181179275135214}
   SfxBouffe: {fileID: 8300000, guid: 5a26f55ef79b0de48ab9794bd2e6717a, type: 3}
-  IsDead: 0
+  SfxWalk: {fileID: 8300000, guid: c6182e02eedf74f419f539da7a02a59e, type: 3}
 --- !u!143 &6343556439227792751
 CharacterController:
   m_ObjectHideFlags: 0
@@ -338,6 +338,8 @@ MonoBehaviour:
   CameraTransform: {fileID: 4765891515129524027}
   animator: {fileID: 1177370106874338344}
   CursorImage: {fileID: 0}
+  stabSound: {fileID: 8300000, guid: 570c7c075c398d34e9690950cac8a4e7, type: 3}
+  stabHitSound: {fileID: 8300000, guid: 38246cfaf35712f40962df3dee5267b5, type: 3}
 --- !u!1 &5385836117532765051
 GameObject:
   m_ObjectHideFlags: 0
