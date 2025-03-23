@@ -44,7 +44,6 @@ public class Person : MonoBehaviour
             return;
         }
 
-
         bool foundTarget = Physics.Raycast(transform.position + RaycastOffset, transform.forward, StabDistance, 1 << LayerMask.NameToLayer("Player"));
 
 
