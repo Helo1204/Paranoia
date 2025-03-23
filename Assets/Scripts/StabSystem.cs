@@ -20,6 +20,7 @@ public class StabSystem : MonoBehaviour
 
     [SerializeField] AudioClip stabSound;
     [SerializeField] AudioClip stabHitSound;
+    [SerializeField] AudioClip enemyFall;
     public void Awake()
     {
         if (Main)
@@ -66,6 +67,10 @@ public class StabSystem : MonoBehaviour
     {
         transform.GetComponent<Person>().IsDead = true;
         transform.GetComponent<Animator>().SetTrigger("die");
+        AudioSource laudiosource = transform.gameObject.AddComponent<AudioSource>();
+        laudiosource.clip = enemyFall;  laudiosource.Play();
+        Destroy(laudiosource, laudiosource.clip.length);
+
         transform.GetComponent<CapsuleCollider>().isTrigger = true;
         if (0.1>Random.Range(0f, 1.0f))
         {

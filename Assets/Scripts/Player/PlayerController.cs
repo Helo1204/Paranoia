@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool ControlsEnabled = true;
 
     public AudioSource Src;
+    public AudioSource WalkAudioSource;
     public AudioClip SfxBouffe;
     public AudioClip SfxWalk;
 
@@ -95,9 +96,8 @@ public class PlayerController : MonoBehaviour
     public void Move(Vector2 moveDir)
     {
         Vector3 move = (transform.forward * moveDir.y + transform.right * moveDir.x) * MoveSpeed * Time.deltaTime;
-        if (move != Vector3.zero)
-        {   Src.clip = SfxWalk;
-            Src.Play();   }
+        if (move == Vector3.zero)
+        { WalkAudioSource.Play();   }
         characterController.Move(move);
     }
 
