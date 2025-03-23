@@ -67,7 +67,7 @@ public class StabSystem : MonoBehaviour
         transform.GetComponent<Person>().IsDead = true;
         transform.GetComponent<Animator>().SetTrigger("die");
         transform.GetComponent<CapsuleCollider>().isTrigger = true;
-        if (0.1>Random.Range(0f, 1.0f))
+        if (0.4>Random.Range(0f, 1.0f) && (transform.GetComponent<move_deviant>()==true))
         {
             playerController.AddDrug(1);
         }
