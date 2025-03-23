@@ -3,10 +3,30 @@ guid: 36dac27c3eed6254dbfd52e6593da5d0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Griff.002
+    second: {fileID: 2100000, guid: e3fe60e3a225c7546ab32a08c879c271, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Klinge.001
+    second: {fileID: 2100000, guid: bf8540f3fadb07e46815f8da55e9edfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Klinge.002
+    second: {fileID: 2100000, guid: bf8540f3fadb07e46815f8da55e9edfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Klinge.003
+    second: {fileID: 2100000, guid: bf8540f3fadb07e46815f8da55e9edfe, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 0
+    materialName: 1
     materialSearch: 1
     materialLocation: 1
   animations:
