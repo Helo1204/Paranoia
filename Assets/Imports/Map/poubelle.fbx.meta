@@ -1,49 +1,9 @@
 fileFormatVersion: 2
-guid: 2e0f37df881ea8f4aaba8adee6675e46
+guid: 4eb11c977c77e1149b71e507a09d5f2e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bat1
-    second: {fileID: 2100000, guid: 9af0995ea0fdb1f49acb7c509ef9dd1c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Brick Plaster.001
-    second: {fileID: 2100000, guid: 18885ba9fd39cb4438f14ed5d80f3885, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bricks Destroyed
-    second: {fileID: 2100000, guid: 156a5a4b78aa7f24f93bf135a238a2c4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Broken Square
-    second: {fileID: 2100000, guid: 24e3b57b8f3083940ad9bba36b73d9f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Broken Tiles
-    second: {fileID: 2100000, guid: 48448ca93d2c04e408ef980dadfe9e2d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal wall
-    second: {fileID: 2100000, guid: 6b6db36bd37a7a84b94aacf8ef6bee57, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Slate Roof Tiles
-    second: {fileID: 2100000, guid: a35161c424b59d24e82f243e9c9fdb5b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Slate roof
-    second: {fileID: 2100000, guid: a35161c424b59d24e82f243e9c9fdb5b, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
