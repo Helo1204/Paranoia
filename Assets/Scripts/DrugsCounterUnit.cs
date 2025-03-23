@@ -28,7 +28,7 @@ public class DrugsCounterUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Counter = player_script.DrugsAmmount;
+        Counter = player_script.DrugsAmount;
         Counter = Mathf.Clamp(Counter, 0, Max);
         Unit = Unitaine(Counter);
         image.sprite = nombres[Unit];

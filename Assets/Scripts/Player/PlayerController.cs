@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     private InputAction lookAction;
 
     public ParanoiaBar ParanoiaBar;
-    public int DrugsAmmount;
-    private bool Eating = false;
+    public int DrugsAmount;
+    private bool IsEating = false;
     private float latestEatingTime;
     private float EATING_INTERVAL = 1.5f;
     public bool ControlsEnabled = true;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         SetControlsEnabled(true);
 
         BaseMoveSpeed = MoveSpeed;
-        Eating = false;
+        IsEating = false;
     }
 
     private void Update()
@@ -60,13 +60,13 @@ public class PlayerController : MonoBehaviour
         {
             Move(moveAction.ReadValue<Vector2>());
             Rotate(lookAction.ReadValue<Vector2>());
-            if (!Eating)
+            if (!IsEating)
             {
 
                 if (Input.GetKeyUp(KeyCode.E) && CheckDrug())
                 {
                     ConsumeDrug();
-                    Eating = true;
+                    IsEating = true;
                     MoveSpeed /= 2;
 
                     latestEatingTime = Time.time;
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
         if (Time.time > latestEatingTime + EATING_INTERVAL)
         {
-            Eating = false;
+            IsEating = false;
             MoveSpeed = BaseMoveSpeed;
         }
     }
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     {
         Bouffing();
         ParanoiaBar.AddParanoia(-20);
-        DrugsAmmount--;
+        DrugsAmount--;
     }
 
     public void Bouffing()
@@ -141,7 +141,12 @@ public class PlayerController : MonoBehaviour
         Src.Play();
     }
 
-    bool CheckDrug()
-    { return DrugsAmmount >= 1; }
+    private bool CheckDrug()
+    { return DrugsAmount >= 1; }
+
+    public void AddDrug(int n)
+    {
+        DrugsAmount += n;
+    }
 
 }
