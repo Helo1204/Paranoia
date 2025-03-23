@@ -858,6 +858,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3883916820394331592, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: SfxBouffe
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e4c863ca2272204ab309e01d4baba97, type: 3}
+    - target: {fileID: 3883916820394331592, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: ParanoiaBar
       value: 
       objectReference: {fileID: 1387834716}
@@ -941,6 +945,14 @@ PrefabInstance:
       propertyPath: StabInterval
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 8044181179275135214, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 9accd3b12009cbf4baa31ddc1e8702b7, type: 3}
+    - target: {fileID: 8044181179275135214, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9accd3b12009cbf4baa31ddc1e8702b7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

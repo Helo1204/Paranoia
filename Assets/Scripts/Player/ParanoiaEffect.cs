@@ -54,10 +54,10 @@ public class ParanoiaEffect : MonoBehaviour
         HeartBeatFactor = HeartBeatFrequency / MinHeartBeat;
         
         HeartBeatDelay = 1 / HeartBeatFrequency;
-        Debug.Log(HeartBeatFrequency);
+        //Debug.Log(HeartBeatFrequency);
         if (Time.time > LatestHeartBeat + HeartBeatDelay)
         {
-            Debug.Log("HeartBeating");
+            //Debug.Log("HeartBeating");
             LatestHeartBeat = Time.time;
             Pitch = HeartBeatFactor;
             //PlayHeartBeat();
