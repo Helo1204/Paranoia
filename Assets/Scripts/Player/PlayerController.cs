@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
     public Transform CameraTransform;
     private CharacterController characterController;
 
-    private const float BaseMoveSpeed = 10f;
-    public float MoveSpeed ;
+    private float BaseMoveSpeed;
+    public float MoveSpeed;
     public float RotateSpeed = 5f;
 
     private float xRotation;
@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip SfxBouffe;
     public AudioClip SfxWalk;
 
+    public bool IsDead;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour
         lookAction = InputSystem.actions.FindAction("Look");
         SetControlsEnabled(true);
 
-        MoveSpeed = BaseMoveSpeed;
+        BaseMoveSpeed = MoveSpeed;
         Eating = false;
     }
 
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
                 {
                     ConsumeDrug();
                     Eating = true;
-                    MoveSpeed = 3f;
+                    MoveSpeed /= 2;
 
                     latestEatingTime = Time.time;
                 }
@@ -76,9 +78,7 @@ public class PlayerController : MonoBehaviour
         {
             Eating = false;
             MoveSpeed = BaseMoveSpeed;
-
         }
-
     }
 
     public void Move(Vector2 moveDir)
