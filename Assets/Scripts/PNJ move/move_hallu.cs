@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,7 +13,6 @@ public class move_hallu : MonoBehaviour
     private bool wantTalk;
     private GameObject player;
     private Vector3 offset;
-
 
     private void Start()
     {
@@ -63,6 +61,10 @@ public class move_hallu : MonoBehaviour
             }
         }
 
+        if (transform.position.x + LevelManager.Main.DestroyDistance < player.transform.position.x)
+        {
+            Destroy(gameObject);
+        }
     }
     private IEnumerator Talk()
     {

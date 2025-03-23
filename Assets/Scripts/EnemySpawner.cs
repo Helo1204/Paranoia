@@ -10,7 +10,6 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> SafePrefabs;
     public List<GameObject> EnemyPrefabs;
 
-    public AnimationCurve Affluence;
     public AnimationCurve EnemyRatio;
     public Transform FurthestEnemySpawnTransform;
     public Transform PlayerSpawnTransform;
@@ -58,9 +57,9 @@ public class EnemySpawner : MonoBehaviour
         time %= 20f; // creneau period
         if (time < 15f) // time for high creneau
         {
-            return 0.7f;
+            return 1f;
         }
-        return 1.3f; // time for low creneau
+        return 2f; // time for low creneau
     }
     
     public void Spawn()
