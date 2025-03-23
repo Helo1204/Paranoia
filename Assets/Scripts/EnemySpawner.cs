@@ -108,8 +108,8 @@ public class EnemySpawner : MonoBehaviour
     public void OnDrawGizmosSelected()
     {
         float x = GetSpawnX();
-        Vector3 from = new(x, FurthestEnemySpawnTransform.position.y, roadRadius);
-        Vector3 to = new(x, FurthestEnemySpawnTransform.position.y, -roadRadius);
+        Vector3 from = new(0, FurthestEnemySpawnTransform.position.y, roadRadius);
+        Vector3 to = new(0, FurthestEnemySpawnTransform.position.y, -roadRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(from, to);
     }

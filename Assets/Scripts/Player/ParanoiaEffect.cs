@@ -101,7 +101,7 @@ public class ParanoiaEffect : MonoBehaviour
 
     public IEnumerator TriggerHeartBeatCoroutine()
     {
-        float battementDelay = 0.4f;
+        float battementDelay = 0.5f;
         float timeBegin;
         float FOV;
         while (true)
@@ -111,7 +111,7 @@ public class ParanoiaEffect : MonoBehaviour
             FOV = PlayerCamera.fieldOfView;
             while (Time.time < timeBegin + battementDelay)
             {
-                PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, FOV-20, Time.deltaTime);
+                PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, FOV-10, Time.deltaTime);
                 yield return null;
             }
             PlayHeartBeat();

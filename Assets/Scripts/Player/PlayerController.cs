@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class PlayerController : MonoBehaviour
 
     public bool IsDead;
 
+    public int InnocentKilled;
+    public int MurdererKilled;
+
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -40,6 +45,8 @@ public class PlayerController : MonoBehaviour
         BaseMoveSpeed = MoveSpeed;
         IsEating = false;
         SetControlsEnabled(true);
+
+        InnocentKilled = 0;
     }
 
     private void Update()
@@ -163,5 +170,6 @@ public class PlayerController : MonoBehaviour
     {
         DrugsAmount += n;
     }
+
 
 }
