@@ -64,6 +64,10 @@ public class StabSystem : MonoBehaviour
         transform.GetComponent<Person>().IsDead = true;
         transform.GetComponent<Animator>().SetTrigger("die");
         transform.GetComponent<CapsuleCollider>().isTrigger = true;
+        if (0.1>Random.Range(0f, 1.0f))
+        {
+            playerController.AddDrug(1);
+        }
         Destroy(transform.GetComponent<NavMeshAgent>());
 
         ParticleSystem particleSystem = transform.GetComponent<ParticleSystem>();

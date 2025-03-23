@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UIElements.Experimental;
@@ -22,9 +24,10 @@ public class ParanoiaEffect : MonoBehaviour
     private float LatestHeartBeat;
     private float HeartBeatFrequency = 1f;
     private float Pitch;
-    public float MaxHeartBeat = 2.5f;
+    public float MaxHeartBeat = 2f;
     public float MinHeartBeat = 1;
     public float HeartBeatFactor = 1f;
+    public float HeartBeatDelay;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +37,7 @@ public class ParanoiaEffect : MonoBehaviour
         EnableFog();
         Pitch = Src.pitch;
         LatestHeartBeat = Time.time;
+        StartCoroutine(TriggerHeartBeatCoroutine());
 
     }
 
@@ -49,14 +53,14 @@ public class ParanoiaEffect : MonoBehaviour
         HeartBeatFrequency = HeartBeatFunction(ParanoiaAmount);
         HeartBeatFactor = HeartBeatFrequency / MinHeartBeat;
         
-        float HeartBeatDelay = 1 / HeartBeatFrequency;
+        HeartBeatDelay = 1 / HeartBeatFrequency;
         Debug.Log(HeartBeatFrequency);
         if (Time.time > LatestHeartBeat + HeartBeatDelay)
         {
             Debug.Log("HeartBeating");
             LatestHeartBeat = Time.time;
             Pitch = HeartBeatFactor;
-            PlayHeartBeat(Pitch);
+            //PlayHeartBeat();
         }
     }
 
@@ -90,11 +94,42 @@ public class ParanoiaEffect : MonoBehaviour
         RenderSettings.fogDensity = fogAmount;
     }
 
-    public void PlayHeartBeat(float Pitch)
+    public void PlayHeartBeat()
     {
         Src.clip = SfxHeartBeat;
-        Src.pitch = Pitch*0.7f;
+        Src.volume = Pitch*0.15f;
+        Src.pitch = Pitch*0.6f;
         Src.Play();
+    }
+
+    public IEnumerator TriggerHeartBeatCoroutine()
+    {
+        float battementDelay = 0.4f;
+        float timeBegin;
+        float FOV;
+        while (true)
+        {
+            //Effet Visuel
+            timeBegin = Time.time;
+            FOV = PlayerCamera.fieldOfView;
+            while (Time.time < timeBegin + battementDelay)
+            {
+                PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, FOV-20, Time.deltaTime);
+                yield return null;
+            }
+            PlayHeartBeat();
+            yield return new WaitForSeconds(battementDelay);
+            //Effet Visuel
+            timeBegin = Time.time;
+            FOV = PlayerCamera.fieldOfView;
+            while (Time.time < timeBegin + battementDelay)
+            {
+                PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, FOV , Time.deltaTime);
+                yield return null;
+            }
+            yield return new WaitForSeconds(HeartBeatDelay- battementDelay);
+
+        }
     }
 
     public float HeartBeatFunction(float ParanoiaAmount)

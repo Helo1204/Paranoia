@@ -774,7 +774,7 @@ MonoBehaviour:
   Factor: 1
   Difficulty: 1
   radius: 10
-  DestroyDistance: 25
+  DestroyDistance: 0
   gameOver: {fileID: 1674525654}
 --- !u!4 &416155945
 Transform:
@@ -2385,7 +2385,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
