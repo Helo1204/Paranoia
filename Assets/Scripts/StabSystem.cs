@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -67,9 +68,8 @@ public class StabSystem : MonoBehaviour
     {
         transform.GetComponent<Person>().IsDead = true;
         transform.GetComponent<Animator>().SetTrigger("die");
-        AudioSource laudiosource = transform.gameObject.AddComponent<AudioSource>();
-        laudiosource.clip = enemyFall;  laudiosource.Play();
-        Destroy(laudiosource, laudiosource.clip.length);
+
+        Coroutine lcoroutine = StartCoroutine(PlayFallSound());      
 
         transform.GetComponent<CapsuleCollider>().isTrigger = true;
         if (0.1>Random.Range(0f, 1.0f))
@@ -100,6 +100,15 @@ public class StabSystem : MonoBehaviour
         if (foundtarget)
         { laudiosource.clip = stabHitSound; }
         else { laudiosource.clip = stabSound; }
+        laudiosource.Play();
+        Destroy(laudiosource, laudiosource.clip.length);
+    }
+
+    IEnumerator PlayFallSound()
+    {
+        AudioSource laudiosource = transform.gameObject.AddComponent<AudioSource>();
+        laudiosource.clip = enemyFall;
+        yield return new WaitForSeconds(0.5f);
         laudiosource.Play();
         Destroy(laudiosource, laudiosource.clip.length);
     }
