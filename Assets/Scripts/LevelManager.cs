@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 
@@ -20,7 +19,7 @@ public class LevelManager : MonoBehaviour
     {
         if (Main)
         {
-            Debug.LogError($"StabSystem.Main already exists, deleting the current one on {name}");
+            Debug.LogError($"LevelManager.Main already exists, deleting the current one on {name}");
             Destroy(this);
             return;
         }

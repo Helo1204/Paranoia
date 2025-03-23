@@ -16,9 +16,12 @@ public class Person : MonoBehaviour
     public GameObject HoldingObject;
     public int DangerMaterialIndex;
     public bool IsMurder;
-    private Animator animator;
     public Vector3 RaycastOffset;
-
+    public bool IsDead;
+    
+    private Animator animator;
+    private bool isKilling;
+    
     public void Start()
     {
         dangerSystem = DangerSystem.Main;
@@ -36,7 +39,7 @@ public class Person : MonoBehaviour
     {
         UpdateDangerValue(dangerSystem.CalculateDanger(transform.position));
 
-        if (!IsMurder)
+        if (!IsMurder || CantInteract())
         {
             return;
         }
@@ -57,11 +60,17 @@ public class Person : MonoBehaviour
 
     private IEnumerator StabPlayer()
     {
+        isKilling = true;
         GetComponent<NavMeshAgent>().isStopped = true;
         playerController.SetControlsEnabled(false);
         animator.SetTrigger("stab");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2f);
         LevelManager.Main.GameOver();
+    }
+
+    public bool CantInteract()
+    {
+        return IsDead || isKilling;
     }
 
     private void OnDrawGizmosSelected()

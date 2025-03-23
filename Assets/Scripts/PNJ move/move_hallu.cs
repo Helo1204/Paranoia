@@ -5,12 +5,14 @@ public class move_hallu : MonoBehaviour
 {
     [SerializeField] float speed;
     
-    Vector3 destinationPosition;
+    private Vector3 destinationPosition;
     private NavMeshAgent agent;
-    
-    void Start()
+    private Person person;
+
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        person = GetComponent<Person>();
 
         destinationPosition = EnemySpawner.Main.PlayerSpawnTransform.position;
         destinationPosition.z = transform.position.z;
@@ -19,17 +21,19 @@ public class move_hallu : MonoBehaviour
         agent.SetDestination(destinationPosition);
     }
 
-    void Update()
+    private void Update()
     {
-        agent.SetDestination(destinationPosition);
+        if (person.CantInteract())
+        {
+            return;
+        }
+
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
     }
-    
-
 }
