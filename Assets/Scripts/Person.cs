@@ -61,6 +61,7 @@ public class Person : MonoBehaviour
 
     private IEnumerator StabPlayer()
     {
+        animator.SetTrigger("stab");
         isKilling = true;
         Destroy(GetComponent<NavMeshAgent>());
         playerController.SetControlsEnabled(false);
@@ -75,7 +76,7 @@ public class Person : MonoBehaviour
             yield return null;
         }
 
-        animator.SetTrigger("stab");
+        
         yield return new WaitForSeconds(2f);
         LevelManager.Main.GameOver();
     }
