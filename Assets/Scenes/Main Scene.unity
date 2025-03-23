@@ -2111,6 +2111,7 @@ MonoBehaviour:
   DestroyDistance: 30
   gameOver: {fileID: 1674525654}
   nextLevel: {fileID: 1779029898}
+  deathCry: {fileID: 8300000, guid: b8bcc572a6dc6ea4bbfa05b54696c459, type: 3}
 --- !u!4 &416155945
 Transform:
   m_ObjectHideFlags: 0
