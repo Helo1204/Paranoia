@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UIElements.Experimental;
 
 public class ParanoiaEffect : MonoBehaviour
 {
@@ -15,7 +17,14 @@ public class ParanoiaEffect : MonoBehaviour
     float Max_Fog = 0.07f;
     float Min_Fog = 0.015f;
 
-    
+    public AudioSource Src;
+    public AudioClip SfxHeartBeat;
+    private float LatestHeartBeat;
+    private float HeartBeatFrequency = 1f;
+    private float Pitch;
+    public float MaxHeartBeat = 2.5f;
+    public float MinHeartBeat = 1;
+    public float HeartBeatFactor = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +32,8 @@ public class ParanoiaEffect : MonoBehaviour
         MinParanoia = ParanoiaBar.minimum;
         MaxParanoia = ParanoiaBar.maximum;
         EnableFog();
+        Pitch = Src.pitch;
+        LatestHeartBeat = Time.time;
 
     }
 
@@ -34,6 +45,19 @@ public class ParanoiaEffect : MonoBehaviour
         PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, FOVfunction(ParanoiaAmount), Time.deltaTime);
         //PlayerCamera.fieldOfView = FOVfunction(ParanoiaAmount);
         SetFog(Mathf.Lerp(RenderSettings.fogDensity, FogFunction(ParanoiaAmount), Time.deltaTime));
+
+        HeartBeatFrequency = HeartBeatFunction(ParanoiaAmount);
+        HeartBeatFactor = HeartBeatFrequency / MinHeartBeat;
+        
+        float HeartBeatDelay = 1 / HeartBeatFrequency;
+        Debug.Log(HeartBeatFrequency);
+        if (Time.time > LatestHeartBeat + HeartBeatDelay)
+        {
+            Debug.Log("HeartBeating");
+            LatestHeartBeat = Time.time;
+            Pitch = HeartBeatFactor;
+            PlayHeartBeat(Pitch);
+        }
     }
 
     void ResetFOV()
@@ -66,7 +90,18 @@ public class ParanoiaEffect : MonoBehaviour
         RenderSettings.fogDensity = fogAmount;
     }
 
+    public void PlayHeartBeat(float Pitch)
+    {
+        Src.clip = SfxHeartBeat;
+        Src.pitch = Pitch*0.7f;
+        Src.Play();
+    }
 
+    public float HeartBeatFunction(float ParanoiaAmount)
+    {
+        float percentile = (ParanoiaAmount - MinParanoia) / (MaxParanoia - MinParanoia);
+        return (percentile * MaxHeartBeat) + ((1 - percentile) * MinHeartBeat);
+    }
 
 
 }
