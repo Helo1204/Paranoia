@@ -23,6 +23,7 @@ public class Person : MonoBehaviour
     private bool isKilling;
 
     [SerializeField] AudioClip deathCry;
+    [SerializeField] AudioClip bloodyStab;
     public void Start()
     {
         dangerSystem = DangerSystem.Main;
@@ -100,5 +101,9 @@ public class Person : MonoBehaviour
         audioSource.clip = deathCry;
         audioSource.Play();
         Destroy(audioSource, audioSource.clip.length);
+        AudioSource audioSource2 = gameObject.AddComponent<AudioSource>();
+        audioSource2.clip = bloodyStab;
+        audioSource2.Play();
+        Destroy(audioSource2, audioSource2.clip.length);
     }
 }
