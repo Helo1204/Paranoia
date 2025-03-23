@@ -29,7 +29,7 @@ public class DrugsCounterDixaine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Counter = player_script.DrugsAmmount;
+        Counter = player_script.DrugsAmount;
         Counter = Mathf.Clamp(Counter, 0, Max);
         Dix = Dixaine(Counter);
         image.sprite = nombres[Dix];

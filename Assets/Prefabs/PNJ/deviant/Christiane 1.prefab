@@ -73,6 +73,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36dac27c3eed6254dbfd52e6593da5d0, type: 3}
+--- !u!1 &3773599497082760184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 36dac27c3eed6254dbfd52e6593da5d0, type: 3}
+  m_PrefabInstance: {fileID: 4080240844797957801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4545631840933097794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36dac27c3eed6254dbfd52e6593da5d0, type: 3}
@@ -226,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dangerMaterial: {fileID: 2100000, guid: 1424b53cea80af640ba14bbda112a2cd, type: 2}
   StabDistance: 2
-  HoldingObject: {fileID: 0}
+  HoldingObject: {fileID: 3773599497082760184}
   DangerMaterialIndex: 0
   IsMurder: 1
   RaycastOffset: {x: 0, y: 1, z: 0}
@@ -5069,6 +5074,7 @@ MonoBehaviour:
   distanceDetection: 10
   speed: 3.5
   animator: {fileID: 3986754268080101198}
+  acceleration: 4
 --- !u!4 &8556035659406157667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8033160242733396548, guid: e20c0f9d19e4db04bb4c62830dbf2dc1, type: 3}
