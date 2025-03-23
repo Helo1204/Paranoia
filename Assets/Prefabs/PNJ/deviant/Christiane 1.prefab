@@ -237,6 +237,7 @@ MonoBehaviour:
   RaycastOffset: {x: 0, y: 1, z: 0}
   IsDead: 0
   deathCry: {fileID: 8300000, guid: b8bcc572a6dc6ea4bbfa05b54696c459, type: 3}
+  bloodyStab: {fileID: 8300000, guid: e8b703fd1681823449b9d23448ca1e52, type: 3}
 --- !u!199 &8096656397013522567
 ParticleSystemRenderer:
   serializedVersion: 6
