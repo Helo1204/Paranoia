@@ -259,13 +259,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraTransform: {fileID: 4765891515129524027}
-  MoveSpeed: 10
+  MoveSpeed: 5
   RotateSpeed: 0.25
   ParanoiaBar: {fileID: 0}
   DrugsAmmount: 0
   ControlsEnabled: 1
   Src: {fileID: 8044181179275135214}
   SfxBouffe: {fileID: 8300000, guid: 5a26f55ef79b0de48ab9794bd2e6717a, type: 3}
+  IsDead: 0
 --- !u!143 &6343556439227792751
 CharacterController:
   m_ObjectHideFlags: 0
