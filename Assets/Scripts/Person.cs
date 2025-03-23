@@ -21,7 +21,8 @@ public class Person : MonoBehaviour
     
     private Animator animator;
     private bool isKilling;
-    
+
+    [SerializeField] AudioClip deathCry;
     public void Start()
     {
         dangerSystem = DangerSystem.Main;
@@ -63,6 +64,7 @@ public class Person : MonoBehaviour
     {
         animator.SetTrigger("stab");
         isKilling = true;
+        PlayDeathSound();
         Destroy(GetComponent<NavMeshAgent>());
         playerController.IsDead = true;
         playerController.SetControlsEnabled(false);
@@ -90,5 +92,13 @@ public class Person : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawRay(transform.position + RaycastOffset, transform.forward);
+    }
+
+    void PlayDeathSound()
+    {
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = deathCry;
+        audioSource.Play();
+        Destroy(audioSource, audioSource.clip.length);
     }
 }
