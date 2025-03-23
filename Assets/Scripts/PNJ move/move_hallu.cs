@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,9 +8,7 @@ public class move_hallu : MonoBehaviour
     private Vector3 destinationFinal;
     private NavMeshAgent agent;
     private Person person;
-    private bool wantTalk;
     private GameObject player;
-    private Vector3 offset;
 
     private void Start()
     {
@@ -24,33 +21,19 @@ public class move_hallu : MonoBehaviour
 
         agent.speed = speed;
         agent.SetDestination(destinationFinal);
-
-
     }
+
     private void Update()
     {
-        
         if (person.CantInteract())
         {
             return;
         }
         agent.SetDestination(destinationFinal);
 
-
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {   
-
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-            {
-                Destroy(gameObject);
-            }
+        if (transform.position.x + LevelManager.Main.DestroyDistance < player.transform.position.x)
+        {
+            Destroy(gameObject);
         }
-
-    }
-    private IEnumerator Talk()
-    {
-        yield return new WaitForSeconds(2);
-        wantTalk= false;
-        destinationPosition = destinationFinal;
     }
 }

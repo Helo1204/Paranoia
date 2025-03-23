@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 7412993194693587098}
   - component: {fileID: 3140099222191716797}
   - component: {fileID: 7908556850138379791}
-  - component: {fileID: 7926830351691056603}
   m_Layer: 5
   m_Name: ParanoiaBar
   m_TagString: Untagged
@@ -104,8 +103,8 @@ RectTransform:
   m_GameObject: {fileID: 8058461684760369647}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2554368827536551941}
   m_Father: {fileID: 0}
@@ -165,24 +164,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ae669ec9b3bbe458478e27e3bb0265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AccMax: 4
   maximum: 100
   minimum: 0
-  current: 50
+  current: 10
   mask: {fileID: 5788251203165309018}
---- !u!114 &7926830351691056603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8058461684760369647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a617f9beac5a9d64ca35d0edcab23205, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParanoiaBar: {fileID: 0}
-  ParanoiaAmount: 0
 --- !u!1 &9196499821424092100
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +241,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.5
+  m_FillAmount: 0.1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

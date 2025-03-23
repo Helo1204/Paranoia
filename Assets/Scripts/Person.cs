@@ -71,13 +71,12 @@ public class Person : MonoBehaviour
         Vector3 newAngles = Quaternion.LookRotation(direction).eulerAngles;
 
         float timeBegin = Time.time;
-        while (Time.time < timeBegin + 1f)
+        while (Time.time < timeBegin + 0.5f)
         {
-            playerController.SlowlyTurnTo(newAngles, Time.deltaTime * 5);
+            playerController.SlowlyTurnTo(newAngles, Time.deltaTime * 10);
             yield return null;
         }
 
-        
         yield return new WaitForSeconds(2f);
         LevelManager.Main.GameOver();
     }
