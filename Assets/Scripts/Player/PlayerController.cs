@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float BaseMoveSpeed;
     public float MoveSpeed;
     public float RotateSpeed = 5f;
+    public float Sensivity = 1f;
 
     private float xRotation;
     private bool cursorLocked;
@@ -17,13 +18,14 @@ public class PlayerController : MonoBehaviour
     private InputAction lookAction;
 
     public ParanoiaBar ParanoiaBar;
-    public int DrugsAmmount;
-    private bool Eating = false;
+    public int DrugsAmount;
+    private bool IsEating = false;
     private float latestEatingTime;
     private float EATING_INTERVAL = 1.5f;
     public bool ControlsEnabled = true;
 
     public AudioSource Src;
+    public AudioSource WalkAudioSource;
     public AudioClip SfxBouffe;
     public AudioClip SfxWalk;
 
@@ -34,39 +36,49 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         lookAction = InputSystem.actions.FindAction("Look");
-        SetControlsEnabled(true);
 
         BaseMoveSpeed = MoveSpeed;
-        Eating = false;
+        IsEating = false;
+        SetControlsEnabled(true);
     }
 
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (!MenuSystem.Main.Visible)
+            {
+                MenuSystem.Main.Show(() => {
+                    SetControlsEnabled(true);
+                    Time.timeScale = 1f;
+                });
+                SetControlsEnabled(false);
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                MenuSystem.Main.Hide();
+                SetControlsEnabled(true);
+                Time.timeScale = 1f;
+            }
+        }
+
         if (!ControlsEnabled)
         {
             return;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            LockCursor(false);
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            LockCursor(true);
         }
 
         if (cursorLocked)
         {
             Move(moveAction.ReadValue<Vector2>());
             Rotate(lookAction.ReadValue<Vector2>());
-            if (!Eating)
+            if (!IsEating)
             {
 
                 if (Input.GetKeyUp(KeyCode.E) && CheckDrug())
                 {
                     ConsumeDrug();
-                    Eating = true;
+                    IsEating = true;
                     MoveSpeed /= 2;
 
                     latestEatingTime = Time.time;
@@ -76,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (Time.time > latestEatingTime + EATING_INTERVAL)
         {
-            Eating = false;
+            IsEating = false;
             MoveSpeed = BaseMoveSpeed;
         }
     }
@@ -84,15 +96,14 @@ public class PlayerController : MonoBehaviour
     public void Move(Vector2 moveDir)
     {
         Vector3 move = (transform.forward * moveDir.y + transform.right * moveDir.x) * MoveSpeed * Time.deltaTime;
-        if (move != Vector3.zero)
-        {   Src.clip = SfxWalk;
-            Src.Play();   }
+        if (move == Vector3.zero)
+        { WalkAudioSource.Play();   }
         characterController.Move(move);
     }
 
     public void Rotate(Vector2 rotationDir)
     {
-        rotationDir *= RotateSpeed;
+        rotationDir *= RotateSpeed * Sensivity;
         xRotation -= rotationDir.y;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
@@ -106,6 +117,11 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, newY, 0);
     }
 
+    public void SlowlyFaceUpwards(float deltaT)
+    {
+        CameraTransform.localRotation = Quaternion.Slerp(CameraTransform.localRotation, Quaternion.identity, deltaT);
+    }
+
     public void LockCursor(bool state)
     {
         if (state)
@@ -115,7 +131,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
@@ -132,7 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         Bouffing();
         ParanoiaBar.AddParanoia(-20);
-        DrugsAmmount--;
+        DrugsAmount--;
     }
 
     public void Bouffing()
@@ -141,7 +156,12 @@ public class PlayerController : MonoBehaviour
         Src.Play();
     }
 
-    bool CheckDrug()
-    { return DrugsAmmount >= 1; }
+    private bool CheckDrug()
+    { return DrugsAmount >= 1; }
+
+    public void AddDrug(int n)
+    {
+        DrugsAmount += n;
+    }
 
 }

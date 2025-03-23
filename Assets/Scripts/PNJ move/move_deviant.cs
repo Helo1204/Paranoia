@@ -11,8 +11,12 @@ public class move_deviant : MonoBehaviour
     [SerializeField] float distanceDetection = 10f;
     [SerializeField] float speed;
     [SerializeField] Animator animator;
+    [SerializeField] int acceleration = 4;
     private float squareDistance;
 
+    [SerializeField] AudioClip spotCry;
+    public bool playerSpotted = false;
+    public bool hasScreamed = false;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -37,8 +41,9 @@ public class move_deviant : MonoBehaviour
         float dist = Vector3.SqrMagnitude(player.transform.position - transform.position);
         if (dist < squareDistance)
         {
+            playerSpotted = true;
             agent.SetDestination(player.transform.position);
-            agent.speed = speed + 4;
+            agent.speed = speed + acceleration;
             animator.SetTrigger("run");
         }
         else
@@ -49,6 +54,15 @@ public class move_deviant : MonoBehaviour
         if (transform.position.x + LevelManager.Main.DestroyDistance < player.transform.position.x)
         {
             Destroy(gameObject);
+        }
+
+        if (!hasScreamed && playerSpotted)
+        {
+            AudioSource laudioSource = gameObject.AddComponent<AudioSource>();
+            laudioSource.clip = spotCry;
+            laudioSource.Play();
+            Destroy(laudioSource, laudioSource.clip.length);
+            hasScreamed = true; 
         }
     }
 }

@@ -1,25 +1,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class play : MonoBehaviour
+public class Play : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject InstructionsPanel;
+    public GameObject MainMenu;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public  void Play()
+    public void OnPlay()
     {
         SceneManager.LoadScene("Main scene");
     }
-   public  void Quit()
+    public void OnQuit()
     {
         Application.Quit();
+    }
+
+    public void OnInstructions()
+    {
+        ToggleMenu(false);
+    }
+
+    public void ToggleMenu(bool menuShown)
+    {
+        InstructionsPanel.SetActive(!menuShown);
+        MainMenu.SetActive(menuShown);
     }
 }
