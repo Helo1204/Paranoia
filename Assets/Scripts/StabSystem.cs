@@ -72,7 +72,14 @@ public class StabSystem : MonoBehaviour
         Destroy(laudiosource, laudiosource.clip.length);
 
         transform.GetComponent<CapsuleCollider>().isTrigger = true;
-        if (0.4>Random.Range(0f, 1.0f) && (transform.GetComponent<move_deviant>()==true))
+        if (transform.GetComponent<move_deviant>() != true)
+        {
+            playerController.InnocentKilled++;
+        } else
+        {
+            playerController.MurdererKilled++;
+        }
+        if (0.4 > Random.Range(0f, 1.0f) && (transform.GetComponent<move_deviant>() == true))
         {
             playerController.AddDrug(1);
         }
