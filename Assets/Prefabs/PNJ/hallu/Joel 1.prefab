@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Joel 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7f5a006bd02f25b44b8f16ccb6c137c4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -90,6 +94,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f5a006bd02f25b44b8f16ccb6c137c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3698986334864348089}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f5a006bd02f25b44b8f16ccb6c137c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9065627305400881328}
   m_SourcePrefab: {fileID: 100100000, guid: 7f5a006bd02f25b44b8f16ccb6c137c4, type: 3}
 --- !u!1 &7331974188798099969 stripped
 GameObject:
@@ -147,16 +154,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7331974188798099969}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3aa11deae39f7194bafce16fbc83e668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dangerMaterial: {fileID: 2100000, guid: 1424b53cea80af640ba14bbda112a2cd, type: 2}
   StabDistance: 2
   HoldingObject: {fileID: 0}
   DangerMaterialIndex: 1
-  IsMurder: 1
-  animator: {fileID: 0}
+  IsMurder: 0
+  RaycastOffset: {x: 0, y: 1, z: 0}
 --- !u!199 &-8602122142444410148
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4970,4 +4978,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
-  agent: {fileID: 7513026635952825604}
+--- !u!136 &9065627305400881328
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331974188798099969}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}

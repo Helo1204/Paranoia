@@ -3,11 +3,12 @@ using UnityEngine.AI;
 
 public class move_deviant : MonoBehaviour
 {
-    GameObject player;
-
-    Vector3 destinationPosition;
-    [SerializeField] float distanceDetection = 10f;
+    private GameObject player;
+    private Vector3 destinationPosition;
     private NavMeshAgent agent;
+    private Person person;
+
+    [SerializeField] float distanceDetection = 10f;
     [SerializeField] float speed;
     [SerializeField] Animator animator;
     private float squareDistance;
@@ -15,6 +16,7 @@ public class move_deviant : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        person = GetComponent<Person>();
 
         destinationPosition = EnemySpawner.Main.PlayerSpawnTransform.position;
         destinationPosition.z = transform.position.z;
@@ -27,6 +29,11 @@ public class move_deviant : MonoBehaviour
 
     private void Update()
     {
+        if (person.CantInteract())
+        {
+            return;
+        }
+
         float dist = Vector3.SqrMagnitude(player.transform.position - transform.position);
         if (dist < squareDistance)
         {

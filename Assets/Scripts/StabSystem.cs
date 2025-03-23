@@ -6,6 +6,8 @@ public class StabSystem : MonoBehaviour
 {
     public static StabSystem Main;
     
+    private PlayerController playerController;
+
     public float StabDistance = 5f;
     public Transform CameraTransform;
     public Animator animator;
@@ -26,6 +28,7 @@ public class StabSystem : MonoBehaviour
         }
 
         Main = this;
+        playerController = GetComponent<PlayerController>();
 
         SqrStabDistance = Mathf.Pow(StabDistance, 2);
     }
@@ -37,7 +40,12 @@ public class StabSystem : MonoBehaviour
 
     public void Update()
     {
-        bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Ennemy"));
+        if (!playerController.ControlsEnabled)
+        {
+            return;
+        }
+
+        bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Enemy"), QueryTriggerInteraction.Collide);
         CursorImage.color = foundTarget ? Color.red : Color.white;
 
         if (Input.GetMouseButtonDown(0) && Time.time > latestStabTime + STAB_INTERVAL)
@@ -53,8 +61,11 @@ public class StabSystem : MonoBehaviour
 
     public void StabTarget(Transform transform, Vector3 point, Vector3 normal)
     {
+        transform.GetComponent<Person>().IsDead = true;
         NavMeshAgent agent = transform.GetComponent<NavMeshAgent>();
+        agent.speed = 0;
         agent.isStopped = true;
+
         ParticleSystem particleSystem = transform.GetComponent<ParticleSystem>();
         particleSystem.Play();
 
@@ -62,7 +73,12 @@ public class StabSystem : MonoBehaviour
         shapeModule.position = transform.InverseTransformPoint(point);
         
         Vector3 localNormal = transform.InverseTransformDirection(normal);
-        Quaternion rotation = Quaternion.LookRotation(localNormal);// * transform.rotation;
+        Quaternion rotation = Quaternion.LookRotation(localNormal);
         shapeModule.rotation = rotation.eulerAngles;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawRay(CameraTransform.position, CameraTransform.forward * StabDistance);
     }
 }
