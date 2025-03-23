@@ -63,8 +63,19 @@ public class Person : MonoBehaviour
     private IEnumerator StabPlayer()
     {
         isKilling = true;
-        GetComponent<NavMeshAgent>().isStopped = true;
+        Destroy(GetComponent<NavMeshAgent>());
         playerController.SetControlsEnabled(false);
+        Vector3 direction = transform.position + new Vector3(0, 3f, 0) - playerController.CameraTransform.position;
+
+        Vector3 newAngles = Quaternion.LookRotation(direction).eulerAngles;
+
+        float timeBegin = Time.time;
+        while (Time.time < timeBegin + 1f)
+        {
+            playerController.SlowlyTurnTo(newAngles, Time.deltaTime * 5);
+            yield return null;
+        }
+
         animator.SetTrigger("stab");
         yield return new WaitForSeconds(2f);
         LevelManager.Main.GameOver();

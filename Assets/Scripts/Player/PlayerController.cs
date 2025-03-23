@@ -26,9 +26,6 @@ public class PlayerController : MonoBehaviour
     public AudioSource Src;
     public AudioClip SfxBouffe;
 
-    
-
-
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -97,6 +94,12 @@ public class PlayerController : MonoBehaviour
 
         CameraTransform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         transform.Rotate(Vector3.up * rotationDir.x);
+    }
+
+    public void SlowlyTurnTo(Vector3 newAngles, float deltaT)
+    {
+        float newY = Mathf.Lerp(transform.rotation.eulerAngles.y, newAngles.y, deltaT);
+        transform.rotation = Quaternion.Euler(0, newY, 0);
     }
 
     public void LockCursor(bool state)

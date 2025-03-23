@@ -45,12 +45,5 @@ public class move_deviant : MonoBehaviour
         {
             agent.SetDestination(destinationPosition);
         }
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-            {
-                Destroy(gameObject);
-            }
-        }
     }
 }
