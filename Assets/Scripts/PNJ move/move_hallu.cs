@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,7 +12,6 @@ public class move_hallu : MonoBehaviour
     private bool wantTalk;
     private GameObject player;
     private Vector3 offset;
-
 
     private void Start()
     {
@@ -48,5 +46,11 @@ public class move_hallu : MonoBehaviour
             }
         }
 
-
+    }
+    private IEnumerator Talk()
+    {
+        yield return new WaitForSeconds(2);
+        wantTalk= false;
+        destinationPosition = destinationFinal;
+    }
 }

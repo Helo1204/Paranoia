@@ -803,6 +803,7 @@ MonoBehaviour:
   Factor: 1
   Difficulty: 1
   radius: 10
+  DestroyDistance: 25
   gameOver: {fileID: 1674525654}
 --- !u!4 &416155945
 Transform:
@@ -839,36 +840,12 @@ MonoBehaviour:
   EnemyPrefabs:
   - {fileID: 6041091041228809596, guid: e73e4008318c5344492ff27826005a11, type: 3}
   - {fileID: 7707971898090608526, guid: 2f23e3b67f72c75408d35cc06b10ddf7, type: 3}
-  Affluence:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 3.5
-      inSlope: -0.013888889
-      outSlope: -0.013888889
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 180
-      value: 1
-      inSlope: -0.013888889
-      outSlope: -0.013888889
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   EnemyRatio:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.2
+      value: 0.05
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -877,7 +854,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 180
-      value: 0.3
+      value: 0.15
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -899,6 +876,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3883916820394331592, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: MoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3883916820394331592, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
       propertyPath: ParanoiaBar
       value: 
@@ -955,6 +936,14 @@ PrefabInstance:
       propertyPath: CursorImage
       value: 
       objectReference: {fileID: 1730040081}
+    - target: {fileID: 7601567294579604341, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: StabDistance
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601567294579604341, guid: b570605c72aad3e4ab5e5d95d8ff5925, type: 3}
+      propertyPath: StabInterval
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
