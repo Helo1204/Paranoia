@@ -11,8 +11,10 @@ public class LevelManager : MonoBehaviour
     public float Difficulty = 1;//to 10
     public float radius=10;
     public float DestroyDistance;
+    private string next;
 
     [SerializeField] GameObject gameOver;
+    [SerializeField] GameObject nextLevel;
     GameObject player;
 
     public static LevelManager Main;
@@ -32,6 +34,7 @@ public class LevelManager : MonoBehaviour
     {
         player = DangerSystem.Main.gameObject;
         gameOver.SetActive(false);
+        nextLevel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -67,4 +70,18 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
         Time.timeScale = 1;
     }
+    public void End(string level)
+    {
+        nextLevel.SetActive(true);
+        player.GetComponent<PlayerController>().SetControlsEnabled(false);
+        Time.timeScale = 0;
+        next = level;
+
+    }
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(next);
+        Time.timeScale = 1;
+    }
+
 }
