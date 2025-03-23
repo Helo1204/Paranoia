@@ -6255,6 +6255,7 @@ MonoBehaviour:
   distanceDetection: 10
   speed: 4.5
   animator: {fileID: 4428223695865258026}
+  acceleration: 5
 --- !u!1 &6086425783601297585
 GameObject:
   m_ObjectHideFlags: 0

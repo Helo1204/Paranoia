@@ -11,6 +11,7 @@ public class move_deviant : MonoBehaviour
     [SerializeField] float distanceDetection = 10f;
     [SerializeField] float speed;
     [SerializeField] Animator animator;
+    [SerializeField] int acceleration = 4;
     private float squareDistance;
 
     private void Start()
@@ -38,7 +39,7 @@ public class move_deviant : MonoBehaviour
         if (dist < squareDistance)
         {
             agent.SetDestination(player.transform.position);
-            agent.speed = speed + 4;
+            agent.speed = speed + acceleration;
             animator.SetTrigger("run");
         }
         else
