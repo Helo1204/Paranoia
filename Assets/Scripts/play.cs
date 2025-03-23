@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Play : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class Play : MonoBehaviour
     public void OnPlay()
     {
         SceneManager.LoadScene("Main scene");
+        ToggleMenu(true);
     }
     public void OnQuit()
     {
