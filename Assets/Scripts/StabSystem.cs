@@ -49,7 +49,7 @@ public class StabSystem : MonoBehaviour
             return;
         }
 
-        bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Enemy"), QueryTriggerInteraction.Collide);
+        bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Enemy"), QueryTriggerInteraction.Ignore);
         CursorImage.color = foundTarget ? Color.red : Color.white;
 
         if (Input.GetMouseButtonDown(0) && Time.time > latestStabTime + StabInterval)

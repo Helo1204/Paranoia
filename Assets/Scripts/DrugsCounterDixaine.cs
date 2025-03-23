@@ -1,11 +1,7 @@
-using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
-using System.Globalization;
-using Unity.VisualScripting;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class DrugsCounterDixaine : MonoBehaviour
 {
