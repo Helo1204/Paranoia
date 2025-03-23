@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dangerMaterial: {fileID: 2100000, guid: 1424b53cea80af640ba14bbda112a2cd, type: 2}
   StabDistance: 2
-  HoldingObject: {fileID: 0}
+  HoldingObject: {fileID: 7907942508894603012}
   DangerMaterialIndex: 0
   IsMurder: 1
   RaycastOffset: {x: 0, y: 1, z: 0}
@@ -5105,5 +5105,10 @@ PrefabInstance:
 --- !u!4 &7418967338985168318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36dac27c3eed6254dbfd52e6593da5d0, type: 3}
+  m_PrefabInstance: {fileID: 7025560450478832213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7907942508894603012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 36dac27c3eed6254dbfd52e6593da5d0, type: 3}
   m_PrefabInstance: {fileID: 7025560450478832213}
   m_PrefabAsset: {fileID: 0}
