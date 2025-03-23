@@ -5019,6 +5019,9 @@ MonoBehaviour:
   speed: 2.5
   animator: {fileID: 5806793582790007205}
   acceleration: 6
+  spotCry: {fileID: 8300000, guid: cc68a7f27b8b9134ba46382273faf0b8, type: 3}
+  playerSpotted: 0
+  hasScreamed: 0
 --- !u!95 &5806793582790007205 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: b9079ea42e240334e986f28c159be6ab, type: 3}

@@ -6256,6 +6256,9 @@ MonoBehaviour:
   speed: 4.5
   animator: {fileID: 4428223695865258026}
   acceleration: 5
+  spotCry: {fileID: 8300000, guid: cc68a7f27b8b9134ba46382273faf0b8, type: 3}
+  playerSpotted: 0
+  hasScreamed: 0
 --- !u!1 &6086425783601297585
 GameObject:
   m_ObjectHideFlags: 0
