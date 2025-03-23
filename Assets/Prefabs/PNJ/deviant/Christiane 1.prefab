@@ -143,7 +143,7 @@ MonoBehaviour:
   StabDistance: 2
   HoldingObject: {fileID: 0}
   DangerMaterialIndex: 0
-  IsMurder: 0
+  IsMurder: 1
   RaycastOffset: {x: 0, y: 1, z: 0}
   IsDead: 0
 --- !u!199 &8096656397013522567

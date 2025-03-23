@@ -831,9 +831,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SafePrefabs:
-  - {fileID: 7331974188798099969, guid: c2bedd9300bef67458df37c94fcebcca, type: 3}
-  EnemyPrefabs:
+  - {fileID: 7707971898090608526, guid: 3d8f67964700fa548a5c21cbc13b35fa, type: 3}
   - {fileID: 7331974188798099969, guid: 68e000b60469fac4f958d8f8a5124705, type: 3}
+  EnemyPrefabs:
+  - {fileID: 7707971898090608526, guid: 2f23e3b67f72c75408d35cc06b10ddf7, type: 3}
+  - {fileID: 7331974188798099969, guid: c2bedd9300bef67458df37c94fcebcca, type: 3}
   Affluence:
     serializedVersion: 2
     m_Curve:
