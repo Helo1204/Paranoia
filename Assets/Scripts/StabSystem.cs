@@ -18,6 +18,8 @@ public class StabSystem : MonoBehaviour
     private float latestStabTime;
     public float StabInterval = 1f;
 
+    [SerializeField] AudioClip stabSound;
+    [SerializeField] AudioClip stabHitSound;
     public void Awake()
     {
         if (Main)
@@ -52,6 +54,7 @@ public class StabSystem : MonoBehaviour
         {
             latestStabTime = Time.time;
             animator.SetTrigger("Stab");
+            PlayStabSound(foundTarget);
             if (foundTarget)
             {
                 StabTarget(hit.transform, hit.point, hit.normal);
@@ -80,5 +83,15 @@ public class StabSystem : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawRay(CameraTransform.position, CameraTransform.forward * StabDistance);
+    }
+
+    void PlayStabSound(bool foundtarget)
+    {
+        AudioSource laudiosource = gameObject.AddComponent<AudioSource>();
+        if (foundtarget)
+        { laudiosource.clip = stabHitSound; }
+        else { laudiosource.clip = stabSound; }
+        laudiosource.Play();
+        Destroy(laudiosource, laudiosource.clip.length);
     }
 }
