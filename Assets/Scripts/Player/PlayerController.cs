@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
     public Transform CameraTransform;
     private CharacterController characterController;
 
-    private const float BaseMoveSpeed = 10f;
-    public float MoveSpeed ;
+    private float BaseMoveSpeed;
+    public float MoveSpeed;
     public float RotateSpeed = 5f;
 
     private float xRotation;
@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource Src;
     public AudioClip SfxBouffe;
 
+    public bool IsDead;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -33,8 +35,8 @@ public class PlayerController : MonoBehaviour
         lookAction = InputSystem.actions.FindAction("Look");
         SetControlsEnabled(true);
 
-        MoveSpeed = BaseMoveSpeed;
-        IsEating = false;
+        BaseMoveSpeed = MoveSpeed;
+        Eating = false;
     }
 
     private void Update()
@@ -63,8 +65,8 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyUp(KeyCode.E) && CheckDrug())
                 {
                     ConsumeDrug();
-                    IsEating = true;
-                    MoveSpeed = 3f;
+                    Eating = true;
+                    MoveSpeed /= 2;
 
                     latestEatingTime = Time.time;
                 }
@@ -75,9 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             IsEating = false;
             MoveSpeed = BaseMoveSpeed;
-
         }
-
     }
 
     public void Move(Vector2 moveDir)

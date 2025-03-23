@@ -1330,7 +1330,7 @@ GameObject:
   - component: {fileID: -2792884723805802741}
   - component: {fileID: -1436205189500655194}
   - component: {fileID: -1995831375520931076}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Joel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1347,8 +1347,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1857114360463994313}
   - {fileID: 2573317116127187944}
@@ -1414,7 +1414,7 @@ MonoBehaviour:
   StabDistance: 2
   HoldingObject: {fileID: 0}
   DangerMaterialIndex: 0
-  IsMurder: 1
+  IsMurder: 0
   RaycastOffset: {x: 0, y: 1, z: 0}
   IsDead: 0
 --- !u!199 &305493063452593744
@@ -6232,7 +6232,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

@@ -16,7 +16,7 @@ public class StabSystem : MonoBehaviour
     private float SqrStabDistance;
 
     private float latestStabTime;
-    public const float STAB_INTERVAL = 1f;
+    public float StabInterval = 1f;
 
     public void Awake()
     {
@@ -48,7 +48,7 @@ public class StabSystem : MonoBehaviour
         bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Enemy"), QueryTriggerInteraction.Collide);
         CursorImage.color = foundTarget ? Color.red : Color.white;
 
-        if (Input.GetMouseButtonDown(0) && Time.time > latestStabTime + STAB_INTERVAL)
+        if (Input.GetMouseButtonDown(0) && Time.time > latestStabTime + StabInterval)
         {
             latestStabTime = Time.time;
             animator.SetTrigger("Stab");
@@ -62,6 +62,8 @@ public class StabSystem : MonoBehaviour
     public void StabTarget(Transform transform, Vector3 point, Vector3 normal)
     {
         transform.GetComponent<Person>().IsDead = true;
+        transform.GetComponent<Animator>().SetTrigger("die");
+        transform.GetComponent<CapsuleCollider>().isTrigger = true;
         Destroy(transform.GetComponent<NavMeshAgent>());
 
         ParticleSystem particleSystem = transform.GetComponent<ParticleSystem>();

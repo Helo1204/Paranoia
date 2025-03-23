@@ -8,8 +8,10 @@ public class LevelManager : MonoBehaviour
     public float CrowdFactor = 0.5f;
     public float BaseFactor = 0.5f;
     public float Factor = 1f;
-    public float Difficulty = 1;
+    public float Difficulty = 1;//to 10
     public float radius=10;
+    public float DestroyDistance;
+
     [SerializeField] GameObject gameOver;
     GameObject player;
 
