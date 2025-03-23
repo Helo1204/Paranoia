@@ -62,6 +62,7 @@ public class StabSystem : MonoBehaviour
     public void StabTarget(Transform transform, Vector3 point, Vector3 normal)
     {
         transform.GetComponent<Person>().IsDead = true;
+        transform.GetComponent<Animator>().SetTrigger("die");
         Destroy(transform.GetComponent<NavMeshAgent>());
 
         ParticleSystem particleSystem = transform.GetComponent<ParticleSystem>();
