@@ -5075,9 +5075,6 @@ MonoBehaviour:
   speed: 3.5
   animator: {fileID: 3986754268080101198}
   acceleration: 4
-  spottedPlayer: 0
-  hasScreamed: 0
-  screamClip: {fileID: 8300000, guid: 157545fcfdbc47e49a251d563c4db769, type: 3}
 --- !u!4 &8556035659406157667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8033160242733396548, guid: e20c0f9d19e4db04bb4c62830dbf2dc1, type: 3}
