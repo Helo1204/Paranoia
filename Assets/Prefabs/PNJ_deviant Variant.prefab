@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_ProvidesContacts
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5783836269385451553, guid: 926a1836e1cd82d41a59be0f41fe152d, type: 3}
+      propertyPath: speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7455316933889180203, guid: 926a1836e1cd82d41a59be0f41fe152d, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -72,8 +76,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8454502351406490161, guid: 926a1836e1cd82d41a59be0f41fe152d, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -106,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6431651406128559568}
   speed: 4.5
+  animator: {fileID: 0}
 --- !u!198 &487140911772990274
 ParticleSystem:
   m_ObjectHideFlags: 0

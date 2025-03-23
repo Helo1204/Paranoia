@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 228357149320837113}
   - component: {fileID: 7455316933889180203}
   - component: {fileID: 5633442460690368104}
-  - component: {fileID: 8454502351406490161}
   - component: {fileID: 7420644516285395378}
   - component: {fileID: 3022259225034630809}
   - component: {fileID: 4275832819782747282}
   - component: {fileID: 1303992522166093946}
+  - component: {fileID: 5783836269385451553}
   m_Layer: 6
   m_Name: PNJ_hallucination
   m_TagString: Untagged
@@ -116,20 +116,6 @@ CapsuleCollider:
   m_Height: 2.0000002
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.000000059604645}
---- !u!114 &8454502351406490161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129923821761929809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d1fb195c2a92894aa5952bdcdf03483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4.5
-  agent: {fileID: 7420644516285395378}
 --- !u!195 &7420644516285395378
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -164,8 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa11deae39f7194bafce16fbc83e668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StabDistance: 2
   HoldingObject: {fileID: 0}
   DangerMaterialIndex: 1
+  IsMurder: 0
 --- !u!198 &4275832819782747282
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4966,3 +4954,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5783836269385451553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129923821761929809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1fb195c2a92894aa5952bdcdf03483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4.5
+  agent: {fileID: 0}

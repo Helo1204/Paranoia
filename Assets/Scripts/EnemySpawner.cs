@@ -1,43 +1,92 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject hallucination;
-    [SerializeField] GameObject deviant;
-    float roadRadius = 5;
-    float hallucinationRatio = 0.7f; //entre 0 et 1
-    float affluence = 3;
-    float time;
+    public static EnemySpawner Main;
 
-    // Update is called once per frame
+    private Transform playerTransform;
+
+    public List<GameObject> SafePrefabs;
+    public List<GameObject> EnemyPrefabs;
+
+    public AnimationCurve Affluence;
+    public AnimationCurve EnemyRatio;
+    public Transform FurthestEnemySpawnTransform;
+    public Transform PlayerSpawnTransform;
+    public float roadRadius = 10f;
+    public float SpawnOffsetFromPlayer = 30f;
+
+    private float furthestEnemySpawnX;
+    private float timeSinceLastSpawn;
+    private float timeSinceBeginning;
+    private float furthestPlayerX = float.MinValue;
+
+    private void Awake()
+    {
+        if (Main)
+        {
+            Debug.LogError($"EnemySpawner.Main already exists, deleting the current one on {name}");
+            Destroy(this);
+            return;
+        }
+
+        Main = this;
+    }
+
+    private void Start()
+    {
+        playerTransform = DangerSystem.Main.transform;
+        timeSinceBeginning = 0;
+        furthestEnemySpawnX = FurthestEnemySpawnTransform.position.x;
+    }
+
     void Update()
     {
-        Reload();
-    }
-    
-    void Spawn()
-    {
+        furthestPlayerX = Mathf.Max(furthestPlayerX, playerTransform.position.x);
+        timeSinceLastSpawn += Time.deltaTime;
+        timeSinceBeginning += Time.deltaTime;
 
-        Vector3 lRandomPosition = new Vector3 (0,0, UnityEngine.Random.Range(-1f,1f) * roadRadius);
-        float lRoll = UnityEngine.Random.Range(0f, 1f);
-        if (lRoll < hallucinationRatio)
-        {
-            Instantiate(hallucination, lRandomPosition, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(deviant, lRandomPosition, Quaternion.identity);
-        }
-        time = 0;
-    }
-
-    void Reload()
-    {
-        time += Time.deltaTime;
-        if (time > affluence)
+        if (timeSinceLastSpawn > Affluence.Evaluate(timeSinceBeginning))
         {
             Spawn();
         }
+    }
+    
+    public void Spawn()
+    {
+        float zPos = Random.Range(-0.8f, 0.8f) * roadRadius;
+        Vector3 randomSpawnPos = new(GetSpawnX(), FurthestEnemySpawnTransform.position.y, zPos);
+        Quaternion spawnRotation = Quaternion.identity;
+
+        if (Random.Range(0f, 1f) < EnemyRatio.Evaluate(timeSinceBeginning))
+        {
+            Instantiate(GetRandomPrefab(EnemyPrefabs), randomSpawnPos, spawnRotation);
+        }
+        else
+        {
+            Instantiate(GetRandomPrefab(SafePrefabs), randomSpawnPos, spawnRotation);
+        }
+
+        timeSinceLastSpawn = 0;
+    }
+
+    private GameObject GetRandomPrefab(List<GameObject> prefabs)
+    {
+        return prefabs[Random.Range(0, prefabs.Count)];
+    }
+
+    public float GetSpawnX()
+    {
+        return Mathf.Min(furthestPlayerX + SpawnOffsetFromPlayer, furthestEnemySpawnX);
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        float x = GetSpawnX();
+        Vector3 from = new(x, FurthestEnemySpawnTransform.position.y, roadRadius);
+        Vector3 to = new(x, FurthestEnemySpawnTransform.position.y, -roadRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(from, to);
     }
 }

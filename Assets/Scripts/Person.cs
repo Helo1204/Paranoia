@@ -1,23 +1,35 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Person : MonoBehaviour
 {
     private DangerSystem dangerSystem;
+    private PlayerController playerController;
     private new Renderer renderer;
 
-    protected MaterialPropertyBlock materialPropertyBlock;
+    private MaterialPropertyBlock materialPropertyBlock;
+
+    public Material dangerMaterial;
 
     public float StabDistance = 2f;
     public GameObject HoldingObject;
     public int DangerMaterialIndex;
     public bool IsMurder;
+    private Animator animator;
+    public Vector3 RaycastOffset;
 
     public void Start()
     {
         dangerSystem = DangerSystem.Main;
-        renderer = GetComponent<Renderer>();
+        playerController = dangerSystem.GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
+
+        renderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
         materialPropertyBlock = new();
+        materialPropertyBlock.SetColor("_Color", Color.white);
+        materialPropertyBlock.SetFloat("_Scale", 1.1f);
     }
 
     public void Update()
@@ -29,11 +41,13 @@ public class Person : MonoBehaviour
             return;
         }
 
-        bool foundTarget = Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Player"));
-        //Debug.Log(foundTarget);
+
+        bool foundTarget = Physics.Raycast(transform.position + RaycastOffset, transform.forward, StabDistance, 1 << LayerMask.NameToLayer("Player"));
+
+
         if (foundTarget)
         {
-            StabPlayer();
+            StartCoroutine(StabPlayer());
         }
     }
 
@@ -43,8 +57,17 @@ public class Person : MonoBehaviour
         renderer.SetPropertyBlock(materialPropertyBlock, DangerMaterialIndex);
     }
 
-    private void StabPlayer()
+    private IEnumerator StabPlayer()
     {
+        GetComponent<NavMeshAgent>().isStopped = true;
+        playerController.SetControlsEnabled(false);
+        animator.SetTrigger("stab");
+        yield return new WaitForSeconds(2);
         LevelManager.Main.GameOver();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawRay(transform.position + RaycastOffset, transform.forward);
     }
 }
