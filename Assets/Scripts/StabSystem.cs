@@ -16,8 +16,10 @@ public class StabSystem : MonoBehaviour
     private float SqrStabDistance;
 
     private float latestStabTime;
-    public const float STAB_INTERVAL = 1f;
+    public float StabInterval = 1f;
 
+    [SerializeField] AudioClip stabSound;
+    [SerializeField] AudioClip stabHitSound;
     public void Awake()
     {
         if (Main)
@@ -48,10 +50,11 @@ public class StabSystem : MonoBehaviour
         bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Enemy"), QueryTriggerInteraction.Collide);
         CursorImage.color = foundTarget ? Color.red : Color.white;
 
-        if (Input.GetMouseButtonDown(0) && Time.time > latestStabTime + STAB_INTERVAL)
+        if (Input.GetMouseButtonDown(0) && Time.time > latestStabTime + StabInterval)
         {
             latestStabTime = Time.time;
             animator.SetTrigger("Stab");
+            PlayStabSound(foundTarget);
             if (foundTarget)
             {
                 StabTarget(hit.transform, hit.point, hit.normal);
@@ -62,9 +65,9 @@ public class StabSystem : MonoBehaviour
     public void StabTarget(Transform transform, Vector3 point, Vector3 normal)
     {
         transform.GetComponent<Person>().IsDead = true;
-        NavMeshAgent agent = transform.GetComponent<NavMeshAgent>();
-        agent.speed = 0;
-        agent.isStopped = true;
+        transform.GetComponent<Animator>().SetTrigger("die");
+        transform.GetComponent<CapsuleCollider>().isTrigger = true;
+        Destroy(transform.GetComponent<NavMeshAgent>());
 
         ParticleSystem particleSystem = transform.GetComponent<ParticleSystem>();
         particleSystem.Play();
@@ -80,5 +83,15 @@ public class StabSystem : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawRay(CameraTransform.position, CameraTransform.forward * StabDistance);
+    }
+
+    void PlayStabSound(bool foundtarget)
+    {
+        AudioSource laudiosource = gameObject.AddComponent<AudioSource>();
+        if (foundtarget)
+        { laudiosource.clip = stabHitSound; }
+        else { laudiosource.clip = stabSound; }
+        laudiosource.Play();
+        Destroy(laudiosource, laudiosource.clip.length);
     }
 }

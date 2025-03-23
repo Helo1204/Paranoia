@@ -39,11 +39,10 @@ public class Person : MonoBehaviour
     {
         UpdateDangerValue(dangerSystem.CalculateDanger(transform.position));
 
-        if (!IsMurder || CantInteract())
+        if (!IsMurder || CantInteract() || playerController.IsDead)
         {
             return;
         }
-
 
         bool foundTarget = Physics.Raycast(transform.position + RaycastOffset, transform.forward, StabDistance, 1 << LayerMask.NameToLayer("Player"));
 
@@ -62,10 +61,22 @@ public class Person : MonoBehaviour
 
     private IEnumerator StabPlayer()
     {
-        isKilling = true;
-        GetComponent<NavMeshAgent>().isStopped = true;
-        playerController.SetControlsEnabled(false);
         animator.SetTrigger("stab");
+        isKilling = true;
+        Destroy(GetComponent<NavMeshAgent>());
+        playerController.IsDead = true;
+        playerController.SetControlsEnabled(false);
+        Vector3 direction = transform.position + new Vector3(0, 3f, 0) - playerController.CameraTransform.position;
+
+        Vector3 newAngles = Quaternion.LookRotation(direction).eulerAngles;
+
+        float timeBegin = Time.time;
+        while (Time.time < timeBegin + 0.5f)
+        {
+            playerController.SlowlyTurnTo(newAngles, Time.deltaTime * 10);
+            yield return null;
+        }
+
         yield return new WaitForSeconds(2f);
         LevelManager.Main.GameOver();
     }

@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
     public Transform CameraTransform;
     private CharacterController characterController;
 
-    private const float BaseMoveSpeed = 10f;
-    public float MoveSpeed ;
+    private float BaseMoveSpeed;
+    public float MoveSpeed;
     public float RotateSpeed = 5f;
 
     private float xRotation;
@@ -20,14 +20,14 @@ public class PlayerController : MonoBehaviour
     public int DrugsAmmount;
     private bool Eating = false;
     private float latestEatingTime;
-    private float EATING_INTERVAL = 1f;
+    private float EATING_INTERVAL = 1.5f;
     public bool ControlsEnabled = true;
 
     public AudioSource Src;
     public AudioClip SfxBouffe;
+    public AudioClip SfxWalk;
 
-    
-
+    public bool IsDead;
 
     private void Start()
     {
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         lookAction = InputSystem.actions.FindAction("Look");
         SetControlsEnabled(true);
 
-        MoveSpeed = BaseMoveSpeed;
+        BaseMoveSpeed = MoveSpeed;
         Eating = false;
     }
 
@@ -67,10 +67,9 @@ public class PlayerController : MonoBehaviour
                 {
                     ConsumeDrug();
                     Eating = true;
-                    MoveSpeed = 3f;
+                    MoveSpeed /= 2;
 
                     latestEatingTime = Time.time;
-                    Bouffing();
                 }
             }
         }
@@ -79,14 +78,15 @@ public class PlayerController : MonoBehaviour
         {
             Eating = false;
             MoveSpeed = BaseMoveSpeed;
-
         }
-
     }
 
     public void Move(Vector2 moveDir)
     {
         Vector3 move = (transform.forward * moveDir.y + transform.right * moveDir.x) * MoveSpeed * Time.deltaTime;
+        if (move != Vector3.zero)
+        {   Src.clip = SfxWalk;
+            Src.Play();   }
         characterController.Move(move);
     }
 
@@ -98,6 +98,12 @@ public class PlayerController : MonoBehaviour
 
         CameraTransform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         transform.Rotate(Vector3.up * rotationDir.x);
+    }
+
+    public void SlowlyTurnTo(Vector3 newAngles, float deltaT)
+    {
+        float newY = Mathf.Lerp(transform.rotation.eulerAngles.y, newAngles.y, deltaT);
+        transform.rotation = Quaternion.Euler(0, newY, 0);
     }
 
     public void LockCursor(bool state)
@@ -124,8 +130,9 @@ public class PlayerController : MonoBehaviour
 
     void ConsumeDrug()
     {
+        Bouffing();
         ParanoiaBar.AddParanoia(-20);
-        DrugsAmmount += -1;
+        DrugsAmmount--;
     }
 
     public void Bouffing()

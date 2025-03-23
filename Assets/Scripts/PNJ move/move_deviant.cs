@@ -45,12 +45,10 @@ public class move_deviant : MonoBehaviour
         {
             agent.SetDestination(destinationPosition);
         }
-        if (agent.remainingDistance <= agent.stoppingDistance)
+
+        if (transform.position.x + LevelManager.Main.DestroyDistance < player.transform.position.x)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 }
