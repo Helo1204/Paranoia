@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -48,7 +49,7 @@ public class StabSystem : MonoBehaviour
             return;
         }
 
-        bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Enemy"), QueryTriggerInteraction.Collide);
+        bool foundTarget = Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Enemy"), QueryTriggerInteraction.Ignore);
         CursorImage.color = foundTarget ? Color.red : Color.white;
 
         if (Input.GetMouseButtonDown(0) && Time.time > latestStabTime + StabInterval)
@@ -67,9 +68,8 @@ public class StabSystem : MonoBehaviour
     {
         transform.GetComponent<Person>().IsDead = true;
         transform.GetComponent<Animator>().SetTrigger("die");
-        AudioSource laudiosource = transform.gameObject.AddComponent<AudioSource>();
-        laudiosource.clip = enemyFall;  laudiosource.Play();
-        Destroy(laudiosource, laudiosource.clip.length);
+
+        Coroutine lcoroutine = StartCoroutine(PlayFallSound());      
 
         transform.GetComponent<CapsuleCollider>().isTrigger = true;
         if (transform.GetComponent<move_deviant>() != true)
@@ -107,6 +107,15 @@ public class StabSystem : MonoBehaviour
         if (foundtarget)
         { laudiosource.clip = stabHitSound; }
         else { laudiosource.clip = stabSound; }
+        laudiosource.Play();
+        Destroy(laudiosource, laudiosource.clip.length);
+    }
+
+    IEnumerator PlayFallSound()
+    {
+        AudioSource laudiosource = transform.gameObject.AddComponent<AudioSource>();
+        laudiosource.clip = enemyFall;
+        yield return new WaitForSeconds(0.5f);
         laudiosource.Play();
         Destroy(laudiosource, laudiosource.clip.length);
     }

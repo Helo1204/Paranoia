@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
             else
             {
                 MenuSystem.Main.Hide();
-                Time.timeScale = 1f;
                 SetControlsEnabled(true);
+                Time.timeScale = 1f;
             }
         }
 
@@ -126,8 +126,7 @@ public class PlayerController : MonoBehaviour
 
     public void SlowlyFaceUpwards(float deltaT)
     {
-        float newX = Mathf.Lerp(CameraTransform.localRotation.eulerAngles.x, 5f, deltaT);
-        CameraTransform.localRotation = Quaternion.Euler(newX, 0, 0);
+        CameraTransform.localRotation = Quaternion.Slerp(CameraTransform.localRotation, Quaternion.identity, deltaT);
     }
 
     public void LockCursor(bool state)
@@ -139,7 +138,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }

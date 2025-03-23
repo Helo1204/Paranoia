@@ -1,8 +1,5 @@
 using System.Collections;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.UIElements.Experimental;
 
 public class ParanoiaEffect : MonoBehaviour
 {

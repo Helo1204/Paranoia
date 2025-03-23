@@ -54,6 +54,7 @@ public class MenuSystem : MonoBehaviour
         MenuPanel.SetActive(false);
         Visible = false;
         closeCallback?.Invoke();
+        closeCallback = null;
     }
 
     public void Show(Action callback)
