@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource Src;
     public AudioClip SfxBouffe;
 
+    public bool IsDead;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();

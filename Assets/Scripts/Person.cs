@@ -39,7 +39,7 @@ public class Person : MonoBehaviour
     {
         UpdateDangerValue(dangerSystem.CalculateDanger(transform.position));
 
-        if (!IsMurder || CantInteract())
+        if (!IsMurder || CantInteract() || playerController.IsDead)
         {
             return;
         }
@@ -63,6 +63,7 @@ public class Person : MonoBehaviour
     {
         isKilling = true;
         Destroy(GetComponent<NavMeshAgent>());
+        playerController.IsDead = true;
         playerController.SetControlsEnabled(false);
         Vector3 direction = transform.position + new Vector3(0, 3f, 0) - playerController.CameraTransform.position;
 
