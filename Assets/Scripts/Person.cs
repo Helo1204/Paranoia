@@ -30,7 +30,7 @@ public class Person : MonoBehaviour
         }
 
         bool foundTarget = Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, StabDistance, 1 << LayerMask.NameToLayer("Player"));
-        Debug.Log(foundTarget);
+        //Debug.Log(foundTarget);
         if (foundTarget)
         {
             StabPlayer();
