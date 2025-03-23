@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public int DrugsAmmount;
     private bool Eating = false;
     private float latestEatingTime;
-    private float EATING_INTERVAL = 1f;
+    private float EATING_INTERVAL = 1.5f;
     public bool ControlsEnabled = true;
 
     public AudioSource Src;
@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviour
                     MoveSpeed = 3f;
 
                     latestEatingTime = Time.time;
-                    Bouffing();
                 }
             }
         }
@@ -124,8 +123,9 @@ public class PlayerController : MonoBehaviour
 
     void ConsumeDrug()
     {
+        Bouffing();
         ParanoiaBar.AddParanoia(-20);
-        DrugsAmmount += -1;
+        DrugsAmmount--;
     }
 
     public void Bouffing()
