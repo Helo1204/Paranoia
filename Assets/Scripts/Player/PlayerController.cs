@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float BaseMoveSpeed;
     public float MoveSpeed;
     public float RotateSpeed = 5f;
+    public float Sensivity = 1f;
 
     private float xRotation;
     private bool cursorLocked;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool ControlsEnabled = true;
 
     public AudioSource Src;
+    public AudioSource WalkAudioSource;
     public AudioClip SfxBouffe;
     public AudioClip SfxWalk;
 
@@ -34,26 +36,36 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         lookAction = InputSystem.actions.FindAction("Look");
-        SetControlsEnabled(true);
 
         BaseMoveSpeed = MoveSpeed;
         IsEating = false;
+        SetControlsEnabled(true);
     }
 
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (!MenuSystem.Main.Visible)
+            {
+                MenuSystem.Main.Show(() => {
+                    SetControlsEnabled(true);
+                    Time.timeScale = 1f;
+                });
+                SetControlsEnabled(false);
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                MenuSystem.Main.Hide();
+                Time.timeScale = 1f;
+                SetControlsEnabled(true);
+            }
+        }
+
         if (!ControlsEnabled)
         {
             return;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            LockCursor(false);
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            LockCursor(true);
         }
 
         if (cursorLocked)
@@ -84,15 +96,14 @@ public class PlayerController : MonoBehaviour
     public void Move(Vector2 moveDir)
     {
         Vector3 move = (transform.forward * moveDir.y + transform.right * moveDir.x) * MoveSpeed * Time.deltaTime;
-        if (move != Vector3.zero)
-        {   Src.clip = SfxWalk;
-            Src.Play();   }
+        if (move == Vector3.zero)
+        { WalkAudioSource.Play();   }
         characterController.Move(move);
     }
 
     public void Rotate(Vector2 rotationDir)
     {
-        rotationDir *= RotateSpeed;
+        rotationDir *= RotateSpeed * Sensivity;
         xRotation -= rotationDir.y;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
@@ -104,6 +115,12 @@ public class PlayerController : MonoBehaviour
     {
         float newY = Mathf.Lerp(transform.rotation.eulerAngles.y, newAngles.y, deltaT);
         transform.rotation = Quaternion.Euler(0, newY, 0);
+    }
+
+    public void SlowlyFaceUpwards(float deltaT)
+    {
+        float newX = Mathf.Lerp(CameraTransform.localRotation.eulerAngles.x, 5f, deltaT);
+        CameraTransform.localRotation = Quaternion.Euler(newX, 0, 0);
     }
 
     public void LockCursor(bool state)

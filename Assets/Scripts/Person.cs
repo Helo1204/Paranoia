@@ -73,7 +73,8 @@ public class Person : MonoBehaviour
         float timeBegin = Time.time;
         while (Time.time < timeBegin + 0.5f)
         {
-            playerController.SlowlyTurnTo(newAngles, Time.deltaTime * 10);
+            playerController.SlowlyTurnTo(newAngles, Time.deltaTime * 10f);
+            playerController.SlowlyFaceUpwards(Time.deltaTime * 5f);
             yield return null;
         }
 
