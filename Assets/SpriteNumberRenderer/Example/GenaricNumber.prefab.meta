@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e64db629161023c44a2d6e0e89ef2318
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 17490
+  packageName: Sprite Number Renderer
+  packageVersion: 1.2
+  assetPath: Assets/SpriteNumberRenderer/Example/GenaricNumber.prefab
+  uploadId: 46038

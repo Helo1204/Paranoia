@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b38efdc51cb9ff94185ff5c11f86b94d
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 17490
+  packageName: Sprite Number Renderer
+  packageVersion: 1.2
+  assetPath: Assets/SpriteNumberRenderer/Readme.txt
+  uploadId: 46038

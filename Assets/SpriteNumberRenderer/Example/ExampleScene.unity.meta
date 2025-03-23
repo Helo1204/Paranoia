@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e254d60fa0409974a97578e9d49d0068
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 17490
+  packageName: Sprite Number Renderer
+  packageVersion: 1.2
+  assetPath: Assets/SpriteNumberRenderer/Example/ExampleScene.unity
+  uploadId: 46038

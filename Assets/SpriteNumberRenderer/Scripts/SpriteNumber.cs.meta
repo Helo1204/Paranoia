@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: cabf90d8492e70440bf859b19c93b03f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 17490
+  packageName: Sprite Number Renderer
+  packageVersion: 1.2
+  assetPath: Assets/SpriteNumberRenderer/Scripts/SpriteNumber.cs
+  uploadId: 46038
