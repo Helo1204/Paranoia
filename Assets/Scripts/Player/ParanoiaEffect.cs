@@ -97,7 +97,7 @@ public class ParanoiaEffect : MonoBehaviour
     public void PlayHeartBeat()
     {
         Src.clip = SfxHeartBeat;
-        Src.volume = Pitch*0.15f;
+        Src.volume = Pitch*0.2f;
         Src.pitch = Pitch*0.6f;
         Src.Play();
     }
